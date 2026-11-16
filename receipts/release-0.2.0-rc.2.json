@@ -99,10 +99,12 @@
       "source": "Creator-selected public listing"
     },
     "priorFourFileLoad": "passed during the free launch",
-    "newSkillVersion": "awaiting upload and approval",
-    "paidBuyerCheckout": "untested"
+    "newSkillVersion": "approved-and-live",
+    "paidBuyerCheckout": "untested",
+    "platformVersion": "1.1",
+    "newSkillDirectMcpLoad": "pending-version-specific-check"
   },
-  "sourceRepositoryVisibility": "private transition follows publication of public companion downloads and updated Skill links",
+  "sourceRepositoryVisibility": "private",
   "remainingAcceptance": [
     "Changed renderer interfaces and arbitrary future versions",
     "Full operating-system reboot",

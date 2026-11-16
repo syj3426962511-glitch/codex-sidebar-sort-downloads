@@ -29,3 +29,9 @@ Signed-in native sorting acceptance used Windows 26.1111.2228.0 and macOS 26.111
 The companion recognizes verified renderer and storage contents after resource renames or relocation. Changes to renderer interfaces receive matching companion updates. Unknown interfaces open Codex through its normal path. Existing native projects and chat membership supply the grouping data, and sorting rules use separate addon-owned records.
 
 This repository publishes the free MIT-licensed companion downloads and public setup information. The development repository is maintained privately. Other MCP-capable agents provide the calling interface for the Codex Desktop sidebar.
+
+## Multi-version work
+
+The historical inventory contains 158 release records. The compatibility table records accepted and pending interfaces, and the architecture explains semantic discovery, family adapters, automatic distribution and recovery. These development stages are recorded separately from the current production release.
+
+[Compatibility table](COMPATIBILITY.en.md) · [Multi-version architecture](MULTIVERSION_COMPATIBILITY.en.md)
