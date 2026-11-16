@@ -1,0 +1,129 @@
+{
+  "version": "0.2.0-rc.1",
+  "verifiedAt": "2026-11-16T20:44:23.5745790+08:00",
+  "verified": true,
+  "workflowUrl": "https://github.com/syj3426962511-glitch/codex-project-chat-sort/actions/runs/43864666248",
+  "workflowConclusion": "success",
+  "verificationSourceCommit": "53ae6e6ef4bcae468edf18574a5329728453fa4c",
+  "releaseSourceCommit": "6ff69ef138fa0ea7e4e2e0586ae602fe58238f60",
+  "skillContentMatchesReleaseSource": true,
+  "marketplaceUrl": "https://www.agensi.io/skills/codex-sidebar-sort",
+  "mcpServer": "https://mcp.agensi.io/mcp/auth",
+  "sdkVersion": "1.29.0",
+  "accountType": "Authorized creator account",
+  "pricing": "Free launch",
+  "oauthScopes": [
+    "read",
+    "install"
+  ],
+  "successfulReadCalls": 4,
+  "purchaseConfirmations": 0,
+  "completeSourceFilesMatched": [
+    "LICENSE",
+    "references/mcp-tools.en.md",
+    "references/user-guide.en.md",
+    "SKILL.md"
+  ],
+  "calls": [
+    {
+      "tool": "get_skill",
+      "arguments": {
+        "slug": "codex-sidebar-sort",
+        "reason": "Verify the published Codex Sidebar Sort instructions against the tested source.",
+        "confirm": false
+      },
+      "isError": false,
+      "textCharacters": 11676,
+      "normalizedSha256": "d2c4502633bb4b5771b2c8b80333e3e5de01dc3c43b384fb0c1dea23294d32a0",
+      "completeSourceFilesMatched": [
+        "SKILL.md"
+      ],
+      "companionToolsPresent": [
+        "sidebar_status",
+        "sidebar_list_scopes",
+        "sidebar_get_scope",
+        "sidebar_sort_scope",
+        "sidebar_reset_scope"
+      ],
+      "structuredKeys": [],
+      "contentTypes": [
+        "text"
+      ]
+    },
+    {
+      "tool": "get_skill",
+      "arguments": {
+        "slug": "codex-sidebar-sort",
+        "file": "references/user-guide.en.md",
+        "reason": "Verify delivery of the complete English installation and usage guide.",
+        "confirm": false
+      },
+      "isError": false,
+      "textCharacters": 8681,
+      "normalizedSha256": "744fb6f46db3f9518e7a0b787d5424113b8892f16e14932003b3e4a304a40b78",
+      "completeSourceFilesMatched": [
+        "references/user-guide.en.md"
+      ],
+      "companionToolsPresent": [
+        "sidebar_status",
+        "sidebar_list_scopes"
+      ],
+      "structuredKeys": [],
+      "contentTypes": [
+        "text"
+      ]
+    },
+    {
+      "tool": "get_skill",
+      "arguments": {
+        "slug": "codex-sidebar-sort",
+        "file": "references/mcp-tools.en.md",
+        "reason": "Verify delivery of the complete companion MCP schemas and examples.",
+        "confirm": false
+      },
+      "isError": false,
+      "textCharacters": 2710,
+      "normalizedSha256": "6b9d00411f60e7086db95c537827a4e8ffe6e997f71649fb68ed5b6a36ba820d",
+      "completeSourceFilesMatched": [
+        "references/mcp-tools.en.md"
+      ],
+      "companionToolsPresent": [
+        "sidebar_status",
+        "sidebar_list_scopes",
+        "sidebar_get_scope",
+        "sidebar_sort_scope",
+        "sidebar_reset_scope"
+      ],
+      "structuredKeys": [],
+      "contentTypes": [
+        "text"
+      ]
+    },
+    {
+      "tool": "get_skill",
+      "arguments": {
+        "slug": "codex-sidebar-sort",
+        "file": "LICENSE",
+        "reason": "Verify delivery of the product license included in the approved package.",
+        "confirm": false
+      },
+      "isError": false,
+      "textCharacters": 1147,
+      "normalizedSha256": "05862ce2b1d38284d2765a9ab8baefddd920ea23a3e4206c071e46b2839c613f",
+      "completeSourceFilesMatched": [
+        "LICENSE"
+      ],
+      "companionToolsPresent": [],
+      "structuredKeys": [],
+      "contentTypes": [
+        "text"
+      ]
+    }
+  ],
+  "cloudSessionCompleted": true,
+  "temporaryOAuthConnectionDisconnected": true,
+  "remainingAcceptance": [
+    "Paid activation after creator payout setup",
+    "Paid transaction acceptance"
+  ]
+}

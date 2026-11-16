@@ -1,0 +1,114 @@
+{
+  "version": "0.2.0-rc.2",
+  "sourceCommit": "b1bbd5a2d62671ca414d450969aaaa14e4f7a387",
+  "verifiedAt": "2026-11-16T13:36:49.028Z",
+  "automatedTests": [
+    {
+      "os": "windows-latest",
+      "tests": 119,
+      "passed": 119,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "os": "macos-latest",
+      "tests": 119,
+      "passed": 119,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "os": "ubuntu-latest",
+      "tests": 119,
+      "passed": 119,
+      "failed": 0,
+      "skipped": 0
+    }
+  ],
+  "workflowRuns": {
+    "tests": "43876063253",
+    "portable": "43876063362",
+    "skill": "43876063411",
+    "officialResources": "43876063226",
+    "windowsClient": "43876063526",
+    "macClient": "43876063227"
+  },
+  "packages": [
+    {
+      "file": "codex-native-sidebar-sort-0.2.0-rc.2.zip",
+      "bytes": 8269,
+      "sha256": "141fb0ee4cdcaa48b071800dafa8081aaf2e0fdcb8cf512ce8b331cb9bba9add",
+      "files": 4,
+      "nativeSortingRuntimeChanges": []
+    },
+    {
+      "file": "codex-project-chat-sort-darwin-arm64.zip",
+      "bytes": 37113959,
+      "sha256": "db66646e0c8c5dd50293c079fba16cd3c0e3f82d1db124b5967a76f6e7c98c1f",
+      "files": 51,
+      "nativeSortingRuntimeChanges": []
+    },
+    {
+      "file": "codex-project-chat-sort-darwin-x64.zip",
+      "bytes": 38310475,
+      "sha256": "94378bc4e9cc61d5f4dc4467a6511e591119d0ddeb72913c1337f4c428a4c25f",
+      "files": 51,
+      "nativeSortingRuntimeChanges": []
+    },
+    {
+      "file": "codex-project-chat-sort-win-x64.zip",
+      "bytes": 33298324,
+      "sha256": "72b91555664b5b1206580071024e4bd705b5f93b359dcaf3010b09da074931dd",
+      "files": 51,
+      "nativeSortingRuntimeChanges": []
+    }
+  ],
+  "verifiedContentRelocation": true,
+  "windowsClient": {
+    "version": "26.1111.2228.0",
+    "signedIn": false,
+    "injectionVerified": true,
+    "originalEntryFollowing": true,
+    "restarted": true,
+    "preferenceRetained": true,
+    "clientStayedClosed": true,
+    "startupTaskRemoved": true
+  },
+  "macClient": {
+    "version": "26.1111.21308",
+    "signedIn": false,
+    "injectionVerified": true,
+    "restarted": true,
+    "preferenceRetained": true,
+    "launcherRemoved": true
+  },
+  "authenticatedSortingEvidence": {
+    "version": "0.2.0-rc.1",
+    "windowsProjects": 30,
+    "windowsChats": 360,
+    "macProjects": 30,
+    "macChats": 360,
+    "reasonReused": "The native sorting and preference runtime files match the accepted release after line-ending normalization."
+  },
+  "marketplace": {
+    "url": "https://www.agensi.io/skills/codex-sidebar-sort",
+    "observedPricing": {
+      "type": "one-time",
+      "currency": "USD",
+      "amount": 10,
+      "source": "Creator-selected public listing"
+    },
+    "priorFourFileLoad": "passed during the free launch",
+    "newSkillVersion": "awaiting upload and approval",
+    "paidBuyerCheckout": "untested"
+  },
+  "sourceRepositoryVisibility": "private transition follows publication of public companion downloads and updated Skill links",
+  "remainingAcceptance": [
+    "Changed renderer interfaces and arbitrary future versions",
+    "Full operating-system reboot",
+    "Simultaneous native windows",
+    "Existing signed-in legacy profile migration",
+    "Custom desktop-data-home propagation",
+    "Authenticated Intel Mac UI"
+  ]
+}

@@ -1,0 +1,250 @@
+{
+  "version": "0.2.0-rc.1",
+  "verifiedAt": "2026-11-16",
+  "sourceCommit": "6ff69ef138fa0ea7e4e2e0586ae602fe58238f60",
+  "environment": "Independent signed-in GitHub-hosted desktops with test projects and chats",
+  "platforms": [
+    {
+      "platform": "Windows x64",
+      "workflowUrl": "https://github.com/syj3426962511-glitch/codex-project-chat-sort/actions/runs/43813465677",
+      "deliveredPackage": {
+        "verified": true,
+        "platform": "win32",
+        "architecture": "x64",
+        "url": "https://github.com/syj3426962511-glitch/codex-project-chat-sort/releases/download/v0.2.0-rc.1/codex-project-chat-sort-win-x64.zip",
+        "sha256": "f268bf6eef2b6205f8b85f6404dc8f9c9e307a47b7173a7c162d6ca3ce446507",
+        "packageBytes": 33297646,
+        "clientPidBeforeUpdate": 21536,
+        "activeClientPreservedDuringUpdate": true,
+        "installedMcpConfigurationVerified": true,
+        "installedBuild": "8de3c7a35f9bc883cc21dbd77590c541b994846d05fea2dad591207df9a7de38",
+        "extractedDownloadRemoved": true,
+        "normalStartup": {
+          "initialPid": 21536,
+          "normalActivation": "registered AppsFolder AUMID",
+          "cycles": [
+            {
+              "build": "8de3c7a35f9bc883cc21dbd77590c541b994846d05fea2dad591207df9a7de38",
+              "supervisorPid": 69200,
+              "appPid": 37892,
+              "cycle": 1,
+              "ready": true,
+              "closedDesktopStayedClosed": true
+            },
+            {
+              "build": "8de3c7a35f9bc883cc21dbd77590c541b994846d05fea2dad591207df9a7de38",
+              "supervisorPid": 69200,
+              "appPid": 51392,
+              "cycle": 2,
+              "ready": true,
+              "closedDesktopStayedClosed": true
+            }
+          ],
+          "verified": true,
+          "activeDesktopPreservedDuringUpgrade": true
+        },
+        "retention": {
+          "projectCount": 30,
+          "uniqueChatCount": 360,
+          "projectIdentitiesPreserved": true,
+          "scopes": [
+            {
+              "scopeId": "projects",
+              "name": "Projects",
+              "count": 29,
+              "mode": "name",
+              "direction": "asc"
+            },
+            {
+              "scopeId": "pinned",
+              "name": "Pinned",
+              "count": 4,
+              "mode": "name",
+              "direction": "asc"
+            },
+            {
+              "scopeId": "recents",
+              "name": "Recents",
+              "count": 342,
+              "mode": "name",
+              "direction": "asc"
+            },
+            {
+              "scopeId": "section:b24de742-1f43-4b56-8c28-fa62ff7ef037",
+              "name": "Sorting QA",
+              "count": 3,
+              "mode": "name",
+              "direction": "asc"
+            },
+            {
+              "scopeId": "project:[\"local\",\"local\",\"3260f717-8942-4bbc-ba34-00ac6bc33d21\"]",
+              "name": "项目-3",
+              "count": 12,
+              "mode": "name",
+              "direction": "asc"
+            }
+          ]
+        }
+      },
+      "readEvaluation": {
+        "verified": true,
+        "questions": 10,
+        "answers": [
+          "30",
+          "360",
+          "项目-20",
+          "357",
+          "60",
+          "6",
+          "342",
+          "18",
+          "34",
+          "Project 10"
+        ],
+        "readCalls": 45,
+        "mutationCalls": 0,
+        "pageSize": 37
+      },
+      "idleServiceSample": {
+        "platform": "win32",
+        "seconds": 15.599,
+        "logicalCpus": 4,
+        "services": [
+          {
+            "pid": 4100,
+            "role": "renderer-watcher",
+            "oneCoreCpuPercent": 0.10016667735111225,
+            "memoryBytes": 21065728
+          },
+          {
+            "pid": 24908,
+            "role": "startup-monitor",
+            "oneCoreCpuPercent": 0.400666709404449,
+            "memoryBytes": 72978432
+          }
+        ]
+      }
+    },
+    {
+      "platform": "macOS arm64",
+      "workflowUrl": "https://github.com/syj3426962511-glitch/codex-project-chat-sort/actions/runs/43823018522",
+      "deliveredPackage": {
+        "verified": true,
+        "platform": "darwin",
+        "architecture": "arm64",
+        "url": "https://github.com/syj3426962511-glitch/codex-project-chat-sort/releases/download/v0.2.0-rc.1/codex-project-chat-sort-darwin-arm64.zip",
+        "sha256": "83c4138016afa7a4693a17029a1abce20b1be478aa4a988d2abb301d737e30bc",
+        "packageBytes": 37113270,
+        "clientPidBeforeUpdate": 36249,
+        "activeClientPreservedDuringUpdate": true,
+        "installedMcpConfigurationVerified": true,
+        "installedBuild": "73b7b28874471b6711eb917cd28364997d59d29ee7e9d52881e09cbe7a535d3d",
+        "extractedDownloadRemoved": true,
+        "normalStartup": {
+          "verified": true,
+          "initialPid": 36249,
+          "normalActivation": "original app bundle through open -a",
+          "cycles": [
+            {
+              "cycle": 1,
+              "appPid": 97940,
+              "supervisorPid": 97324,
+              "build": "73b7b28874471b6711eb917cd28364997d59d29ee7e9d52881e09cbe7a535d3d",
+              "closedDesktopStayedClosed": true,
+              "ready": true
+            },
+            {
+              "cycle": 2,
+              "appPid": 99815,
+              "supervisorPid": 97324,
+              "build": "73b7b28874471b6711eb917cd28364997d59d29ee7e9d52881e09cbe7a535d3d",
+              "closedDesktopStayedClosed": true,
+              "ready": true
+            }
+          ],
+          "launchAgentRegistered": true
+        },
+        "retention": {
+          "projectCount": 30,
+          "uniqueChatCount": 360,
+          "projectIdentitiesPreserved": true,
+          "scopes": [
+            {
+              "scopeId": "projects",
+              "name": "Projects",
+              "count": 29,
+              "mode": "name",
+              "direction": "asc"
+            },
+            {
+              "scopeId": "pinned",
+              "name": "Pinned",
+              "count": 4,
+              "mode": "name",
+              "direction": "asc"
+            },
+            {
+              "scopeId": "recents",
+              "name": "Recents",
+              "count": 342,
+              "mode": "name",
+              "direction": "asc"
+            },
+            {
+              "scopeId": "section:120ee607-5d60-4173-a2fb-689f4958d9a1",
+              "name": "Sorting QA",
+              "count": 3,
+              "mode": "name",
+              "direction": "asc"
+            },
+            {
+              "scopeId": "project:[\"local\",\"local\",\"83b86a17-001d-4a15-8ac2-31f147d0a928\"]",
+              "name": "项目-3",
+              "count": 12,
+              "mode": "name",
+              "direction": "asc"
+            }
+          ]
+        }
+      },
+      "readEvaluation": {
+        "verified": true,
+        "questions": 10,
+        "answers": [
+          "30",
+          "360",
+          "项目-20",
+          "357",
+          "60",
+          "6",
+          "342",
+          "18",
+          "34",
+          "Project 10"
+        ],
+        "readCalls": 45,
+        "mutationCalls": 0,
+        "pageSize": 37
+      },
+      "idleServiceSample": {
+        "platform": "darwin",
+        "seconds": 15.02,
+        "logicalCpus": 3,
+        "services": [
+          {
+            "pid": 2751,
+            "role": "startup-monitor",
+            "oneCoreCpuPercent": 0.13315579227696714,
+            "memoryBytes": 30556160
+          },
+          {
+            "pid": 36438,
+            "role": "renderer-watcher",
+            "oneCoreCpuPercent": 0.39946737683089545,
+            "memoryBytes": 75579392
+          }
+        ]
+      }
+    }
+  ]
+}
