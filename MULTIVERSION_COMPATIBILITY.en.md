@@ -13,6 +13,11 @@ The historical inventory currently contains 158 archived release records from
 26.429.61741 through 26.1111.21308. Package availability, publisher signatures,
 interface families and native acceptance are recorded as individual stages.
 
+The startup updater is implemented in the 0.3.0-rc.1 candidate and awaits cloud
+acceptance. Customers using rc.2 will need one transition upgrade to receive
+that updater. The current released packages use the manual companion upgrade
+procedure in the buyer guide.
+
 ## Engineering choices
 
 | Technique | Role | Required evidence |
@@ -75,7 +80,7 @@ Each adapter declares these capabilities explicitly.
 - Manual editor, saved order, live metadata updates and restore-default action.
 - Persistence and migration contract for companion-owned rules.
 
-Native project identity and membership remain the source for grouping. Sorting
+Native project identity and membership supply grouping. Sorting
 rules use separate, versioned companion records. Migration reads older records,
 retains reset markers and keeps rules available when an adapter is temporarily
 waiting for support.
@@ -110,6 +115,41 @@ Shortcut replacement retains its exact original backup. Adapter transactions
 operate on companion files and renderer interception. A successful syntax check
 is one stage in the complete native acceptance process.
 
+## Startup patch checks
+
+The candidate's resolver requests the public adapter catalog on every launch,
+including launches with a healthy local adapter. The request asks caches to
+revalidate their response. The launcher discovers the actual registered package
+or app bundle and supplies its current version and archive path.
+
+1. Validate the installed local adapter as an available fallback.
+2. Request the distribution catalog and select a platform/interface match.
+3. Reuse the selected cached package when it passes preflight. Download a new
+   package when the published runtime digest changes.
+4. Verify the package digest and relative file paths, parse each JavaScript
+   module, and run the installed interface preflight in staging.
+5. Commit the new runtime directory atomically and pass that directory to the
+   renderer watcher. A failed update retains a matching local adapter.
+6. Write the client version, selected runtime, update outcome and check time to
+   `compatibility-state.json` and the readable `Compatibility.html` page.
+
+Network requests have a 12-second limit per request. Downloads are bounded to
+1 MiB for the catalog and 2 MiB for the compressed adapter runtime. A proxy
+configured through HTTP_PROXY/HTTPS_PROXY applies to the external download
+process. The desktop connection remains on loopback. The packaged Node.js
+22.23.4 supports this proxy mode. [Node.js command-line options](https://nodejs.org/download/release/v22.23.0/docs/api/cli.html#--use-env-proxy)
+
+The resolver checks at startup. The current candidate's retry opportunity is
+the next application start. In-session update polling and hot activation remain
+separate development items. The current interception connection may reopen a
+normally started client or refresh its renderer while reconnecting sorting.
+
+The adapter package updates sorting, renderer bindings and watcher modules.
+The installed bootstrap, platform launchers and bundled Node.js remain part of
+the foundation package. Automatic replacement of those foundation files needs
+its own staged upgrade and platform lifecycle acceptance. This is an additional
+delivery requirement for fully automatic application maintenance.
+
 ## Historical coverage and new releases
 
 The history inventory records source URLs and provenance. Official vendor URLs
@@ -126,11 +166,12 @@ Version 26.1103.4239.0 is an explicit Windows sample target. Archived Mac and
 Windows release dates can differ. The Windows renderer version and native
 contents establish its relationship to a Mac sample.
 
-The maintenance pipeline checks official update feeds, inspects new packages,
-reuses existing family evidence where the actual interfaces match and runs the
-remaining family acceptance before publishing an update. Existing installations
-retrieve a matching accepted adapter at startup. An offline installation uses
-its available compatible local adapters and records any pending update.
+The maintenance pipeline is planned to check official update feeds, inspect new
+packages, reuse family evidence where actual interfaces match and run the
+remaining native acceptance before publishing an update. A newly changed
+interface needs maintainer adaptation and acceptance before distribution.
+The startup updater retrieves published matching adapters. An offline
+installation uses a compatible local adapter and records the failed check.
 
 ## Acceptance matrix
 
@@ -162,9 +203,18 @@ interface or storage change receives the affected native checks again.
 | Current automated suite | 119 passes per OS, plus 22 Skill checks per OS |
 | Current official-client startup checks | Fresh-profile Windows/Mac launch, exit/reopen and fixture preference retention passed |
 | Historical source inventory | 158 release records collected, six existing profiles mapped |
-| Automatic adapter selection/download and diagnostic page | Implementation candidate, cloud acceptance in progress |
-| Semantic AST discovery and measured family clustering | Historical-package inspection and implementation work in progress |
+| Every-start catalog checks, adapter downloads and diagnostic page | Implementation candidate, cloud execution blocked before job startup |
+| Staging syntax checks, installed preflight and offline local reuse | Implementation candidate, new regression cases awaiting cloud execution |
+| Live activation health rollback and foundation self-upgrade | Pending implementation and native acceptance |
+| Scheduled official-build monitoring and accepted-pack publication | Maintenance design prepared, automation pending |
+| Semantic AST discovery and measured family clustering | Design and inspection workflow prepared, historical cloud jobs awaiting execution |
 | Complete refreshed historical-family acceptance | Pending the corresponding inspected and adapted samples |
 
 Unknown future interfaces receive the same discovery, contract and recovery
 process. The compatibility table reports observed coverage as that work proceeds.
+
+GitHub runner admission prevented the new test jobs from starting. The
+candidate's new regression cases and historical inspection have zero completed
+execution steps. Production rc.2 acceptance above was completed before this
+block. The candidate updater is kept outside the customer release until its
+cloud acceptance completes.

@@ -1,0 +1,88 @@
+{
+  "schema": 1,
+  "recordedAt": "2026-11-16T15:31:48.191Z",
+  "production": {
+    "companion": "0.2.0-rc.2",
+    "skill": "1.1",
+    "nativeEvidence": "release-0.2.0-rc.2.json",
+    "acceptedDesktopPlatforms": [
+      "Windows 26.1111.2228.0 x64",
+      "macOS 26.1111.21308 arm64"
+    ],
+    "automatedTestsPassedPerOs": 119
+  },
+  "candidate": {
+    "version": "0.3.0-rc.1",
+    "codeCommit": "deba65b96dff002d3099eba23fdab79c7f0ec646",
+    "branch": "codex/multiversion-compatibility",
+    "everyStartCatalogCheck": true,
+    "regressionCases": 10,
+    "localVerification": "static-syntax-only",
+    "releasedToCustomers": false
+  },
+  "cloudAcceptance": {
+    "state": "not-started",
+    "runId": "43895555409",
+    "blocker": "cloud-runner-admission",
+    "jobs": [
+      {
+        "id": 133398031315,
+        "name": "test (macos-latest)",
+        "conclusion": "cancelled",
+        "steps": 0
+      },
+      {
+        "id": 133398032003,
+        "name": "test (ubuntu-latest)",
+        "conclusion": "failure",
+        "steps": 0
+      },
+      {
+        "id": 133398032314,
+        "name": "test (windows-latest)",
+        "conclusion": "cancelled",
+        "steps": 0
+      },
+      {
+        "id": 133398057142,
+        "name": "report",
+        "conclusion": "skipped",
+        "steps": 0
+      }
+    ],
+    "historicalInspectionRun": "43888508177",
+    "historicalInspectionState": "not-started"
+  },
+  "historicalInventory": {
+    "releaseRecords": 158,
+    "existingProfiles": 6,
+    "fullyAcceptedFamilies": 1
+  },
+  "distribution": {
+    "catalogUrl": "https://raw.githubusercontent.com/syj3426962511-glitch/codex-sidebar-sort-downloads/main/compatibility/catalog.json",
+    "acceptedAdapterPacks": 0,
+    "sourceRepositoryVisibility": "private",
+    "publicCompanionRepository": "https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads",
+    "existingRc2NeedsTransitionUpgrade": true
+  },
+  "marketplace": {
+    "url": "https://www.agensi.io/skills/codex-sidebar-sort",
+    "platformVersion": "1.1",
+    "pricing": {
+      "type": "one-time",
+      "currency": "USD",
+      "amount": 10
+    },
+    "metadataUpdated": true
+  },
+  "remaining": [
+    "Cloud execution of candidate regression cases",
+    "Historical package signature and interface-family inspection",
+    "Native update and restart acceptance for each supported family",
+    "Semantic discovery and additional family adapters",
+    "Live activation health rollback",
+    "Automatic foundation and launcher upgrades",
+    "Continuous official-build monitoring and accepted-pack publication"
+  ],
+  "localClientFunctionalTestsPerformed": false
+}

@@ -186,6 +186,8 @@ Windows package and Mac renderer release schedules differ. The underlying Window
 
 ## Automatic adapter maintenance
 
-The current implementation candidate adds accepted-adapter downloads, installed preflight, an atomic cache selection, offline reuse and a diagnostic page showing the actual client version. Its cloud acceptance is in progress. Semantic AST discovery and broader family adapters are under development.
+The 0.3.0-rc.1 candidate requests the adapter catalog at every startup, including starts with a healthy local adapter. It adds accepted-adapter downloads, staging syntax checks, installed preflight, atomic cache selection, offline reuse and version/update diagnostics. Existing rc.2 installations need one transition upgrade to receive the updater. The released rc.2 guide describes the current manual upgrade procedure.
+
+GitHub runner admission prevented the candidate cloud tests from starting. New regression cases and historical inspection have zero completed execution steps. Semantic AST discovery, broader family adapters, live activation rollback, foundation self-upgrade and continuous official-build monitoring remain development work.
 
 [Multi-version architecture](MULTIVERSION_COMPATIBILITY.en.md) · [Machine-readable history](compatibility/history.json) · [Current release receipt](receipts/release-0.2.0-rc.2.json)

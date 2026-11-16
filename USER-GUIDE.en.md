@@ -175,6 +175,13 @@ The next launch discovers the registered Windows package or Mac app bundle.
 A newly released renderer needs a matching companion update. Install that
 release into the same folder, fully quit and reopen Codex, then reconnect MCP.
 
+The 0.3.0-rc.1 startup updater is an implementation candidate awaiting cloud
+acceptance. Existing rc.2 installations need one transition upgrade to receive
+it after acceptance. Its per-start patch checks, recovery boundaries and
+remaining work are recorded in the compatibility architecture.
+
+[Startup update development status](MULTIVERSION_COMPATIBILITY.en.md#startup-patch-checks)
+
 The app keeps project membership and history. Sorting preferences use separate
 per-scope records. Preserve the desktop profile when moving computers or
 restoring a backup.

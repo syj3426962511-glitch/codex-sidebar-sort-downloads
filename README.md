@@ -32,6 +32,10 @@ This repository publishes the free MIT-licensed companion downloads and public s
 
 ## Multi-version work
 
-The historical inventory contains 158 release records. The compatibility table records accepted and pending interfaces, and the architecture explains semantic discovery, family adapters, automatic distribution and recovery. These development stages are recorded separately from the current production release.
+The historical inventory contains 158 release records. The compatibility table records accepted and pending interfaces. Full signed-in acceptance currently covers Windows 26.1111.2228.0 x64 and macOS 26.1111.21308 arm64.
 
-[Compatibility table](COMPATIBILITY.en.md) · [Multi-version architecture](MULTIVERSION_COMPATIBILITY.en.md)
+The 0.3.0-rc.1 candidate checks the online adapter catalog at every startup, including starts with a healthy local adapter. It stages and validates matching published repairs, and retains a compatible local adapter after an update failure. Cloud execution is pending. Existing rc.2 installations need one transition upgrade to receive the updater after acceptance.
+
+The catalog currently contains zero accepted downloadable adapter packs. The current customer release is 0.2.0-rc.2. Its English guide describes the released upgrade process. Semantic discovery, new historical families, live activation recovery, foundation upgrades and continuous official-build monitoring remain development work.
+
+[Compatibility table](COMPATIBILITY.en.md) · [Startup updates and multi-version architecture](MULTIVERSION_COMPATIBILITY.en.md) · [Candidate status](receipts/multiversion-candidate-status.json)
