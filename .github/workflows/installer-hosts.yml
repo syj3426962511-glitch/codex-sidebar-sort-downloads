@@ -1,0 +1,27 @@
+name: Native installer host readiness
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  inspect:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, macos-15, macos-15-intel]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 8
+    steps:
+      - name: Inspect native installer build tools
+        shell: bash
+        run: |
+          echo "Free desktop companion installer host"
+          uname -a
+          node --version
+          python3 --version
+          if [[ "$RUNNER_OS" == "macOS" ]]; then
+            command -v osacompile
+            command -v hdiutil
+          else
+            command -v choco
+          fi
