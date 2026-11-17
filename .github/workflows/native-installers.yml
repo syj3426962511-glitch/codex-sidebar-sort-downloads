@@ -1,6 +1,12 @@
 name: Build and exercise native desktop installers
 on:
   workflow_dispatch:
+    inputs:
+      target:
+        description: Native installer target
+        type: choice
+        options: [all, win-x64, darwin-arm64, darwin-x64]
+        default: all
 permissions:
   contents: write
 jobs:
@@ -9,13 +15,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        include:
-          - os: windows-latest
-            target: win-x64
-          - os: macos-15
-            target: darwin-arm64
-          - os: macos-15-intel
-            target: darwin-x64
+        include: ${{ fromJSON(inputs.target == 'win-x64' && '[{"os":"windows-latest","target":"win-x64"}]' || inputs.target == 'darwin-arm64' && '[{"os":"macos-15","target":"darwin-arm64"}]' || inputs.target == 'darwin-x64' && '[{"os":"macos-15-intel","target":"darwin-x64"}]' || '[{"os":"windows-latest","target":"win-x64"},{"os":"macos-15","target":"darwin-arm64"},{"os":"macos-15-intel","target":"darwin-x64"}]') }}
     runs-on: ${{ matrix.os }}
     timeout-minutes: 35
     env:
@@ -34,6 +34,14 @@ jobs:
       - name: Compile the final native installer
         shell: bash
         run: python3 installers/build.py --target "${{ matrix.target }}" --zip "$RUNNER_TEMP/installer-payload/codex-project-chat-sort-${{ matrix.target }}.zip" --out dist
+      - name: Capture the Windows installer window
+        if: runner.os == 'Windows'
+        shell: powershell
+        run: ./installers/cloud-windows.ps1 -PreviewOnly
+      - name: Capture the Mac installer window
+        if: runner.os == 'macOS'
+        shell: bash
+        run: node installers/cloud-preview.mjs
       - name: Prepare the official Windows client
         if: runner.os == 'Windows'
         timeout-minutes: 15
@@ -54,10 +62,23 @@ jobs:
           curl --fail --location --retry 2 --max-time 300 https://persistent.oaistatic.com/codex-app-prod/Codex.dmg -o "$RUNNER_TEMP/Codex.dmg"
           mkdir -p "$RUNNER_TEMP/official-codex"
           hdiutil attach "$RUNNER_TEMP/Codex.dmg" -nobrowse -readonly -mountpoint "$RUNNER_TEMP/official-codex"
-          ditto "$RUNNER_TEMP/official-codex/Codex.app" /Applications/Codex.app
-          codesign --verify --deep --strict /Applications/Codex.app
-          codesign -dv --verbose=4 /Applications/Codex.app 2> dist/official-client-signature.txt
-          grep 'TeamIdentifier=2DC432GLL2' dist/official-client-signature.txt
+          python3 - <<'PY'
+          import json, os, pathlib, plistlib, subprocess
+          source = pathlib.Path(os.environ['RUNNER_TEMP']) / 'official-codex'
+          apps = list(source.glob('*.app'))
+          if len(apps) != 1:
+              raise RuntimeError('Expected one official desktop app in the disk image.')
+          app = pathlib.Path('/Applications') / apps[0].name
+          subprocess.run(['/usr/bin/ditto', str(apps[0]), str(app)], check=True)
+          subprocess.run(['/usr/bin/codesign', '--verify', '--deep', '--strict', str(app)], check=True)
+          signed = subprocess.run(['/usr/bin/codesign', '-dv', '--verbose=4', str(app)], capture_output=True, text=True, check=True)
+          pathlib.Path('dist/official-client-signature.txt').write_text(signed.stderr)
+          if 'TeamIdentifier=2DC432GLL2' not in signed.stderr:
+              raise RuntimeError('Unexpected desktop signing team.')
+          with (app / 'Contents/Info.plist').open('rb') as file:
+              info = plistlib.load(file)
+          pathlib.Path('dist/official-client.json').write_text(json.dumps({'app':str(app), 'version':info.get('CFBundleShortVersionString')}))
+          PY
           hdiutil detach "$RUNNER_TEMP/official-codex"
       - name: Exercise the final Windows install, upgrade and uninstall
         if: runner.os == 'Windows'

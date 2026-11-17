@@ -1,3 +1,4 @@
+param([switch]$PreviewOnly)
 $ErrorActionPreference='Stop'
 if($env:GITHUB_ACTIONS -ne 'true'){throw 'Use an independent cloud Windows desktop.'}
 $output=Join-Path $PWD 'dist'
@@ -17,6 +18,7 @@ $preview=Start-Process -FilePath $installer -PassThru
 Start-Sleep -Seconds 3
 Save-Screenshot '01-windows-installation-wizard.png'
 Stop-Process -Id $preview.Id -Force
+if($PreviewOnly){exit 0}
 $codex=Join-Path $env:USERPROFILE '.codex'
 New-Item -ItemType Directory -Path $codex -Force|Out-Null
 $configFile=Join-Path $codex 'config.toml'
