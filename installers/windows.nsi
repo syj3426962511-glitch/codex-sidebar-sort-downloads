@@ -2,6 +2,7 @@ Unicode true
 !include "MUI2.nsh"
 !include "LogicLib.nsh"
 !include "FileFunc.nsh"
+!include "x64.nsh"
 !ifndef PAYLOAD
   !error "PAYLOAD must point to the extracted platform package"
 !endif
@@ -40,6 +41,10 @@ Var ExistingInstall
 
 Function .onInit
   SetShellVarContext current
+  ${IfNot} ${RunningX64}
+    MessageBox MB_ICONSTOP|MB_OK "Use this installer on Windows x64." /SD IDOK
+    Abort
+  ${EndIf}
   ReadRegStr $ExistingInstall HKCU "${PRODUCT_KEY}" "InstallLocation"
   ${If} $ExistingInstall == ""
     ReadEnvStr $0 "CODEX_HOME"
@@ -66,7 +71,7 @@ Function .onVerifyInstDir
 FunctionEnd
 
 Function StartSorting
-  Exec '"$SYSDIR\wscript.exe" "$INSTDIR\Open Codex Sorting.vbs"'
+  Exec '"$WINDIR\Sysnative\wscript.exe" "$INSTDIR\Open Codex Sorting.vbs"'
 FunctionEnd
 
 Section "Desktop companion"
@@ -77,7 +82,7 @@ Section "Desktop companion"
   File "WindowsIntegration.ps1"
   File "mcp-registration.mjs"
   File "INSTALL.en.md"
-  nsExec::ExecToLog /TIMEOUT=600000 '"$SYSDIR\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -NonInteractive -ExecutionPolicy Bypass -File "$PLUGINSDIR\integration\WindowsIntegration.ps1" -Mode Install -ProductDirectory "$INSTDIR" -PayloadRoot "$PLUGINSDIR\payload\codex-project-chat-sort"'
+  nsExec::ExecToLog /TIMEOUT=600000 '"$WINDIR\Sysnative\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -NonInteractive -ExecutionPolicy Bypass -File "$PLUGINSDIR\integration\WindowsIntegration.ps1" -Mode Install -ProductDirectory "$INSTDIR" -PayloadRoot "$PLUGINSDIR\payload\codex-project-chat-sort"'
   Pop $0
   ${If} $0 != 0
     SetErrorLevel 1
@@ -100,7 +105,7 @@ SectionEnd
 
 Section "Uninstall"
   SetShellVarContext current
-  nsExec::ExecToLog /TIMEOUT=120000 '"$SYSDIR\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -NonInteractive -ExecutionPolicy Bypass -File "$INSTDIR\installer\WindowsIntegration.ps1" -Mode Uninstall -ProductDirectory "$INSTDIR"'
+  nsExec::ExecToLog /TIMEOUT=120000 '"$WINDIR\Sysnative\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -NonInteractive -ExecutionPolicy Bypass -File "$INSTDIR\installer\WindowsIntegration.ps1" -Mode Uninstall -ProductDirectory "$INSTDIR"'
   Pop $0
   ${If} $0 != 0
     SetErrorLevel 1
