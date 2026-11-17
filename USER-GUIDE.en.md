@@ -1,5 +1,18 @@
 # English buyer guide
 
+## Current prerelease
+
+This guide accompanies desktop companion 0.3.0-rc.4 and Skill 0.3.0. Menus,
+diagnostics, installation documents, examples and test fixtures use English.
+Name sorting uses numeric-aware, case-insensitive English comparison.
+
+The current packages contain structural interface discovery, startup catalog
+checks, component updates, local activation recovery and MCP runtime refresh.
+Native sorting, update/recovery and complete restart acceptance for this
+prerelease remains pending independent cloud execution. The platform and
+desktop package checks are described in the release receipt. Historical
+0.2.0 evidence is identified separately below.
+
 ## Included with the purchase
 
 Codex Sidebar Sort supplies an agent workflow for sorting Codex Desktop from
@@ -8,9 +21,10 @@ rules for each project and section. The companion is free under the MIT license.
 Purchase the Skill through Agensi at the price displayed on its listing.
 [Agensi product page](https://www.agensi.io/skills/codex-sidebar-sort)
 
-Install the desktop companion once on the computer running Codex, then connect
-its local MCP service to your agent. Load this Skill through Agensi after
-connecting the service. Your existing Codex Desktop account supplies the login.
+Install the desktop companion once on the computer running Codex. The native
+installer includes its runtime, enables startup following and configures the
+local Codex MCP connection. Load this Skill through Agensi after installation.
+Your existing Codex Desktop account supplies the login.
 
 ## Computers and compatibility
 
@@ -19,11 +33,22 @@ connecting the service. Your existing Codex Desktop account supplies the login.
 - Intel Macs use the `darwin-x64` download.
 
 Downloads include Node.js and its license. Setup copies it into the durable
-installation. The companion checks exact renderer and dependency fingerprints
-at startup. Consult the release validation report for tested desktop versions.
-Renamed or relocated resources are discovered by verified content. Changes to
-the renderer interfaces receive support through a companion update. The current
-signed-in acceptance covers Windows 26.1111.2228.0 and macOS 26.1111.21308.
+installation. At startup, the companion discovers the current desktop and
+inspects renderer and storage interfaces. Existing content profiles and
+structural recipes provide matching strategies. A changed interface can receive
+a published adapter when one becomes available. The earlier 0.2.0 release line
+has signed-in evidence for Windows 26.1111.2228.0 and macOS 26.1111.21308.
+
+| Desktop | Earlier 0.2.0 acceptance |
+| --- | --- |
+| Windows 26.1111.2228.0 x64 | Signed-in sorting, complete project/chat membership and restart retention |
+| macOS 26.1111.21308 arm64 | Signed-in sorting, complete project/chat membership and restart retention |
+| Intel Mac | Packaging and installation, signed-in UI acceptance pending |
+| Additional historical interfaces | Source inventory and existing profiles, family inspection and native acceptance in progress |
+
+The historical inventory contains 158 release source records. The compatibility
+table records the acceptance stage of each interface family.
+[Compatibility and observed coverage](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/blob/main/COMPATIBILITY.en.md)
 
 Your agent needs local stdio MCP support. Connection snippets cover Codex,
 Cursor and Claude Desktop. The service controls Codex Desktop's sidebar. The
@@ -32,51 +57,75 @@ agent-specific checks appear in the release report as they are completed.
 
 ## Download
 
-Choose the free ZIP matching your computer and extract it before installation.
+Choose the self-contained native installer matching your computer. These
+installers package the free 0.3.0-rc.4 companion and its complete Node.js runtime.
 
-- `codex-project-chat-sort-win-x64.zip`
-- `codex-project-chat-sort-darwin-arm64.zip`
-- `codex-project-chat-sort-darwin-x64.zip`
+- `Codex-Sidebar-Sort-Windows-x64-Setup.exe`
+- `Codex-Sidebar-Sort-Mac-Apple-Silicon.dmg`
+- `Codex-Sidebar-Sort-Mac-Intel.dmg`
 
-[Free companion releases](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/releases)
+[Windows x64 EXE](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/releases/download/v0.3.0-rc.4/Codex-Sidebar-Sort-Windows-x64-Setup.exe)
+[Mac Apple Silicon DMG](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/releases/download/v0.3.0-rc.4/Codex-Sidebar-Sort-Mac-Apple-Silicon.dmg)
+[Mac Intel DMG](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/releases/download/v0.3.0-rc.4/Codex-Sidebar-Sort-Mac-Intel.dmg)
+[Release notes and package checks](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/releases/tag/v0.3.0-rc.4)
 
 Use the compatibility information on the release page to check your desktop
 build before installing. The source repository is maintained privately. The
 download repository supplies the free companion and public setup information.
 
+## Offline transfer to another computer
+
+Each EXE or DMG contains the complete sorting companion, Node.js and licenses.
+The installer runs without downloading Python, Node.js or companion libraries.
+
+1. Select the EXE or DMG matching the receiving computer's operating system and
+   processor. Check its Codex Desktop build against the acceptance table above.
+2. Copy that installer by USB drive, local network or file transfer.
+3. Run the Windows EXE, or open the matching Mac DMG and its installation app.
+4. Save work, fully quit Codex and reopen it. Check the three-dot sorting menu.
+5. The native installer configures the local Codex MCP service. Load the paid
+   Skill through Agensi for chat commands. The receiving computer uses its own
+   Codex account. Cursor and Claude Desktop use the optional connection steps below.
+
+The sorting installer reads its runtime dependencies from the local package.
+Codex sign-in, cloud conversations and Agensi services use their normal network
+connections. Removal uses Windows Installed apps or the installed Mac uninstaller.
+
 ## Windows installation
 
-1. Open the extracted `codex-project-chat-sort` folder.
-2. Double-click `Install.cmd`.
-3. Setup discovers the registered desktop app and its desktop ChatGPT/Codex shortcut, creating a Codex shortcut if needed,
-   then copies the companion and bundled runtime into its durable folder.
-4. Setup registers a current-user login task for startup following.
-5. Save your work, fully quit Codex, and reopen it.
-6. Open a project's three-dot menu and look for `Sort chats by`.
+1. Open `Codex-Sidebar-Sort-Windows-x64-Setup.exe`.
+2. Choose a dedicated installation folder, then select Install. Upgrades use
+   the existing installation's location and preserve its configuration.
+3. Setup discovers the registered desktop app and configures its shortcut,
+   current-user startup service and local Codex MCP connection.
+4. Save work, fully quit Codex and reopen it. An explicit restart option is
+   available on the final installer page.
+5. Open a project's three-dot menu and look for `Sort chats by`.
 
 Normal starts are detected using the registered app's actual executable path.
-The default installation is `addons\codex-project-chat-sort` inside `CODEX_HOME`.
-When that variable is unset, Setup uses your user profile's `.codex` folder.
-Retain the exact installation path shown by Setup for the MCP connection.
+The default new installation is `Programs\Codex Sidebar Sort` inside your
+local application-data folder. An existing portable installation is recognized
+and upgraded at its current location. Retain the exact path shown by Setup.
 
-Custom installations use `scripts/Setup.ps1` with `-InstallDirectory` and
-`-ShortcutPath`. Update using the same installation path.
+Remove it from Windows Installed apps or the Start menu's Codex Sidebar Sort
+uninstall entry. The older portable ZIP remains available for advanced use.
 
 ## macOS installation
 
-1. Extract the ZIP for your Mac's processor.
-2. Open `Install-mac.command`. If macOS asks you to review a downloaded command,
-   review the file and use the system's Open action.
-3. Setup discovers the official Codex/ChatGPT app bundle.
-4. Setup installs into `~/Library/Application Support/CodexProjectChatSort` and
-   creates `Codex Sorting.command` on the desktop.
-5. A current-user LaunchAgent follows subsequent normal app starts. An already
-   open desktop is allowed to finish.
-6. Save your work, fully quit Codex, and open it again. Check the project menu.
+1. Open the DMG for your Mac processor, then open `Install Codex Sidebar Sort.app`.
+2. Choose the installation folder and confirm the actual Codex/ChatGPT app.
+3. Select Install. Setup copies Node.js into the installation, enables its
+   current-user LaunchAgent and configures the local Codex MCP connection.
+4. Save work and reopen Codex. The installer offers an explicit Restart Codex
+   button. Eject the disk image after installation.
+5. Open a project's menu to use sorting. Removal uses the installed
+   `Uninstall Codex Sidebar Sort.app`.
 
-For an explicit app path, use the bundled Node to run
-`scripts/mac.mjs install --app "/Applications/Codex.app" --root "/your/install/path"`.
-Keep the installation path when updating.
+The default installation is `~/Library/Application Support/CodexProjectChatSort`.
+Upgrades use the current location. The community installers have no commercial
+Windows signing certificate or Apple Developer ID notarization. Downloaded
+software may require the operating system's approval. Managed computers follow
+their administrator's software policy.
 
 ## Connect Agensi
 
@@ -93,6 +142,11 @@ account, so authorizing a different agent replaces the previous connection.
 [Agensi connection guide](https://www.agensi.io/docs/mcp-server)
 
 ## Connect the local companion
+
+The native EXE and DMG installers configure this connection automatically for
+Codex. The following steps are for another MCP-capable agent or for an existing
+manually edited connection that the installer preserved. Such an installation
+also writes `MCP-connection.toml` with the correct installed paths.
 
 Use the installed Node and `runtime/bin/companion-mcp.mjs`, passing the installed
 folder after `--root`. The command prints the exact snippet for your paths.
@@ -158,7 +212,7 @@ Recently updated, Date created, Name or Manual. Automatic modes offer Ascending
 and Descending. `Adjust manual order…` opens the editor. Drag rows or use Move
 up / Move down, then Save.
 
-Names use numeric-aware, case-insensitive `zh-CN` comparison, so `Project 2`
+Names use numeric-aware, case-insensitive `en` comparison, so `Project 2`
 precedes `Project 10`. Equal values use stable IDs. Missing dates stay last.
 Date modes become available when native metadata supplies timestamps. Manual
 orders append new items in oldest-created-first order.
@@ -174,13 +228,6 @@ with the required local connection enabled.
 The next launch discovers the registered Windows package or Mac app bundle.
 A newly released renderer needs a matching companion update. Install that
 release into the same folder, fully quit and reopen Codex, then reconnect MCP.
-
-The 0.3.0-rc.1 startup updater is an implementation candidate awaiting cloud
-acceptance. Existing rc.2 installations need one transition upgrade to receive
-it after acceptance. Its per-start patch checks, recovery boundaries and
-remaining work are recorded in the compatibility architecture.
-
-[Startup update development status](MULTIVERSION_COMPATIBILITY.en.md#startup-patch-checks)
 
 The app keeps project membership and history. Sorting preferences use separate
 per-scope records. Preserve the desktop profile when moving computers or
@@ -199,11 +246,74 @@ restoring a backup.
 | Date action unavailable | Wait for metadata or select Name or Manual. |
 | Startup service needs attention | Read `startup-state.json` and `watcher-state.json`. |
 
+### Version and startup diagnosis
+
+Record the actual desktop version, companion version and operating-system
+architecture. Read `state.json`, `startup-state.json` and `watcher-state.json`
+from the companion installation folder when available. A healthy renderer
+watcher reports `ready`, the current client process and the selected payload
+build. The agent's `sidebar_status` then checks the signed-in native connection.
+
+Newer updater installations may also provide `compatibility-state.json`,
+`Compatibility.html` and `runtime-health.json`. They record update checks,
+selected interface contents, activation outcomes and local recovery. Read the
+fields present in that installed version and preserve their actual messages.
+
+### Recovery for the released companion
+
+1. Save work and fully quit Codex. Keep the desktop profile and companion
+   configuration available throughout recovery.
+2. Open the official installed Codex entry to check its normal startup. An
+   unfamiliar renderer requires its matching accepted adapter or release.
+3. Install a matching released companion into the same companion folder,
+   then reopen Codex and reconnect the local MCP service.
+4. Call `sidebar_status` and `sidebar_list_scopes`. Read complete scope pages
+   and compare the exact project/chat IDs and saved sorting rules.
+5. Use `Restore app default sorting` when the requested recovery includes
+   clearing a particular scope's override.
+
+### Startup updater development status
+
+The 0.3.0-rc.4 prerelease requests the online adapter catalog at each start. Its
+implementation stages matching downloads, checks their integrity and JavaScript
+syntax, and preflights the installed interface. Startup activation recovery
+records the client process, selected build and renderer/storage signature. It
+can try a compatible local runtime, with at most two activation attempts, and
+reloads the native renderer after failed recovery.
+
+The candidate adds component-updater, launcher and startup-monitor replacement,
+MCP runtime refresh, four legacy structural rule sets and one current native
+rule set. The native structural candidate covers thirteen required interfaces
+and twenty-two sorting integration points. Lexical signatures preserve renamed
+variables, parameter expressions and shadowed bindings.
+
+The English release has 111 source-file syntax checks and checked platform and
+Skill archives. Native installer lifecycle receipts cover installation, upgrade,
+bundled-runtime execution, startup service registration, automatic MCP setup
+and uninstall on the platforms that passed their cloud run. Signed-in sorting,
+updater/recovery and complete client restart acceptance for this runtime are
+tracked separately. Read the actual platform receipt on the release page.
+
+Current prerelease downloads supply companion 0.3.0-rc.4. Existing 0.2.0
+customers install this complete package once to receive its startup updater.
+The accepted-adapter catalog currently contains zero repair packs. Node.js
+interpreter upgrades, in-session recovery, broader historical native acceptance
+and continuous official-build monitoring retain development work.
+
+[Startup update architecture](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/blob/main/MULTIVERSION_COMPATIBILITY.en.md)
+
+
 ## Removal
 
-Windows uses `Uninstall.cmd` to restore its owned shortcut and remove its login
-task. macOS uses `Uninstall-mac.command` to remove its launcher and LaunchAgent.
-Remove the `codex_sidebar_sort` MCP entry from your agent.
+For the native EXE installation, use Windows Installed apps or the Start menu
+uninstall entry. For the native DMG installation, open the installed
+`Uninstall Codex Sidebar Sort.app`. These remove the owned runtime, startup
+service and automatically configured local Codex MCP entry. Other agent
+connections that you added manually can be removed in that agent.
+
+Older portable ZIP setups use `Uninstall.cmd` on Windows or
+`Uninstall-mac.command` on macOS to restore their launch entries. Their runtime
+files and manually configured MCP entries are retained for review.
 
 Use `Restore app default sorting` for each override you want to clear. Retain
 the companion configuration until any desired restore steps are complete.

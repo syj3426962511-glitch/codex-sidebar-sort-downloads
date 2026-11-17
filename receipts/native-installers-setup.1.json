@@ -1,0 +1,131 @@
+{
+  "installerVersion": "0.3.0-setup.1",
+  "companionVersion": "0.3.0-rc.4",
+  "recordedAt": "2026-11-17T17:14:07.548417+00:00",
+  "platforms": [
+    {
+      "installerVersion": "0.3.0-setup.1",
+      "companionVersion": "0.3.0-rc.4",
+      "target": "win-x64",
+      "file": "Codex-Sidebar-Sort-Windows-x64-Setup.exe",
+      "bytes": 22615902,
+      "sha256": "9585be5a7c6e63ceeea2fac9f1b724c6de263ad2a9aaad3f13aad5dec96ed756",
+      "sourcePackageSha256": "f0f8d34287cc69af4224d652b4081a6e26f8520384464e6c1cb29ee630e27794",
+      "bundledNode": true,
+      "paidSkillIncluded": false,
+      "commercialCodeSigning": false,
+      "nativeInstallerLifecycle": "passed",
+      "authenticatedNativeSorting": "pending-independent-cloud-login",
+      "run": "https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/actions/runs/44133314834",
+      "checks": [
+        "normal installer entry",
+        "custom folder with spaces",
+        "bundled Node execution",
+        "startup task running",
+        "automatic MCP configuration",
+        "unrelated MCP preserved",
+        "upgrade configuration retained",
+        "normal uninstall entry",
+        "startup removed",
+        "MCP removed",
+        "unrelated user file retained",
+        "owned shortcut restored"
+      ],
+      "officialClient": {
+        "Name": "OpenAI.Codex",
+        "Version": "26.1111.2228.0",
+        "Publisher": "CN=50BDFD77-8903-4850-9FFE-6E8522F64D5B",
+        "SignatureKind": 3
+      },
+      "localRetained": true,
+      "screenshots": [
+        "agensi/validation/installers/win-x64/evidence/01-windows-installation-wizard.png",
+        "agensi/validation/installers/win-x64/evidence/02-windows-installed-desktop.png"
+      ]
+    },
+    {
+      "installerVersion": "0.3.0-setup.1",
+      "companionVersion": "0.3.0-rc.4",
+      "target": "darwin-arm64",
+      "file": "Codex-Sidebar-Sort-Mac-Apple-Silicon.dmg",
+      "bytes": 42871452,
+      "sha256": "3deaff595758c216978203eb0602c1a83fc1ae0ee174c7b518e4135260997ba2",
+      "sourcePackageSha256": "15ae8e787713647534b784a2bc31673381e66d14ff660f5ea4238f1cabcc00ac",
+      "bundledNode": true,
+      "paidSkillIncluded": false,
+      "commercialCodeSigning": false,
+      "nativeInstallerLifecycle": "passed",
+      "authenticatedNativeSorting": "pending-independent-cloud-login",
+      "run": "https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/actions/runs/44132955737",
+      "checks": [
+        "normal GUI installer entry",
+        "custom folder with spaces",
+        "bundled Node execution",
+        "startup LaunchAgent running",
+        "automatic MCP configuration",
+        "unrelated MCP preserved",
+        "upgrade configuration retained",
+        "normal GUI uninstall entry",
+        "startup removed",
+        "MCP removed",
+        "unrelated user file retained"
+      ],
+      "officialClient": {
+        "app": "/Applications/ChatGPT.app",
+        "version": "26.1111.21308"
+      },
+      "localRetained": true,
+      "screenshots": [
+        "agensi/validation/installers/darwin-arm64/evidence/00-mac-native-installer.png",
+        "agensi/validation/installers/darwin-arm64/evidence/01-mac-installation-wizard.png",
+        "agensi/validation/installers/darwin-arm64/evidence/02-mac-upgrade-wizard.png",
+        "agensi/validation/installers/darwin-arm64/evidence/03-mac-uninstall-wizard.png"
+      ]
+    },
+    {
+      "installerVersion": "0.3.0-setup.1",
+      "companionVersion": "0.3.0-rc.4",
+      "target": "darwin-x64",
+      "file": "Codex-Sidebar-Sort-Mac-Intel.dmg",
+      "bytes": 44429240,
+      "sha256": "7f8b5feb799d63d4c9aedcece7fe18472f9a280e05ae6b636878280c6227a7bb",
+      "sourcePackageSha256": "622266f6b451149f2b1ea59bcffa85a8e24a2388ff906bd2d9abb01dda99c179",
+      "bundledNode": true,
+      "paidSkillIncluded": false,
+      "commercialCodeSigning": false,
+      "nativeInstallerLifecycle": "passed",
+      "authenticatedNativeSorting": "pending-independent-cloud-login",
+      "run": "https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/actions/runs/44133323790",
+      "checks": [
+        "normal GUI installer entry",
+        "custom folder with spaces",
+        "bundled Node execution",
+        "startup LaunchAgent running",
+        "automatic MCP configuration",
+        "unrelated MCP preserved",
+        "upgrade configuration retained",
+        "normal GUI uninstall entry",
+        "startup removed",
+        "MCP removed",
+        "unrelated user file retained"
+      ],
+      "officialClient": {
+        "app": "/Applications/ChatGPT.app",
+        "version": "26.1111.21308"
+      },
+      "localRetained": true,
+      "screenshots": [
+        "agensi/validation/installers/darwin-x64/evidence/00-mac-native-installer.png",
+        "agensi/validation/installers/darwin-x64/evidence/01-mac-installation-wizard.png",
+        "agensi/validation/installers/darwin-x64/evidence/02-mac-upgrade-wizard.png",
+        "agensi/validation/installers/darwin-x64/evidence/03-mac-uninstall-wizard.png"
+      ]
+    }
+  ],
+  "lifecycleChecksPassed": 34,
+  "allThreePlatformLifecycleChecksPassed": true,
+  "localClientTestsPerformed": false,
+  "authenticatedNativeSorting": "pending-release-specific-cloud-login",
+  "fullClientRestartAndAdapterRecovery": "pending-release-specific-acceptance",
+  "marketplaceSubmission": "pending-desktop-browser-control-restoration"
+}

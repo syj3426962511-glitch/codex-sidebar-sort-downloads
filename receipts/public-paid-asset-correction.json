@@ -1,0 +1,30 @@
+{
+  "remainingAssets": [
+    "codex-project-chat-sort-darwin-arm64.zip",
+    "codex-project-chat-sort-darwin-x64.zip",
+    "codex-project-chat-sort-win-x64.zip",
+    "english-delivery-audit.json",
+    "release-0.3.0-rc.4.json",
+    "RELEASE.en.md",
+    "SHA256SUMS.txt",
+    "USER-GUIDE.en.md"
+  ],
+  "time": "2026-11-18T00:49:33.6023208+08:00",
+  "publicRemovalVerified": true,
+  "reason": "Paid marketplace workflow separated from the free companion download",
+  "release": "v0.3.0-rc.4",
+  "removed": [
+    {
+      "previousDownloads": 1,
+      "localRetained": true,
+      "localBytes": 10715,
+      "file": "codex-native-sidebar-sort-0.3.0.zip"
+    },
+    {
+      "previousDownloads": 1,
+      "localRetained": true,
+      "localBytes": 115492848,
+      "file": "03-Codex-Sidebar-Sort-Offline-0.3.0.zip"
+    }
+  ]
+}

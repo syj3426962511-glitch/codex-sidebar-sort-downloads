@@ -1,41 +1,63 @@
 # Codex Sidebar Sort desktop companion
 
-Sort Codex Desktop project chats, Projects, Pinned, Recents and custom sections through three-dot menus. Each scope keeps its own recently-updated, creation-date, natural-name or manual rule.
+Install the free companion on the computer that runs Codex Desktop. It adds
+independent sorting rules to project chats, Projects, Pinned, Recents and
+custom sections through supported three-dot menus.
 
 ## Install
 
-Choose your computer, extract the ZIP and open the installer.
+Open the native installer, choose a dedicated installation folder and Install.
+Node.js, companion libraries, startup following and the local Codex MCP
+connection are included. No separate runtime or terminal setup is required.
 
-| Computer | Download | Installer |
+| Computer | Self-contained installer | Size |
 | --- | --- | --- |
-| Windows x64 | [Windows ZIP](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/releases/download/v0.2.0-rc.2/codex-project-chat-sort-win-x64.zip) | Install.cmd |
-| Mac Apple Silicon | [Apple Silicon ZIP](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/releases/download/v0.2.0-rc.2/codex-project-chat-sort-darwin-arm64.zip) | Install-mac.command |
-| Mac Intel | [Intel ZIP](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/releases/download/v0.2.0-rc.2/codex-project-chat-sort-darwin-x64.zip) | Install-mac.command |
+| Windows x64 | [EXE setup wizard](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/releases/download/v0.3.0-rc.4/Codex-Sidebar-Sort-Windows-x64-Setup.exe) | 21.57 MiB |
+| Mac Apple Silicon | [DMG installer](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/releases/download/v0.3.0-rc.4/Codex-Sidebar-Sort-Mac-Apple-Silicon.dmg) | 40.89 MiB |
+| Mac Intel | [DMG installer](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/releases/download/v0.3.0-rc.4/Codex-Sidebar-Sort-Mac-Intel.dmg) | 42.37 MiB |
 
-The downloads include Node.js and its license. Save your work, fully quit Codex and reopen after installation. Independent Windows and macOS startup services follow subsequent original app starts.
+Save work, close Codex and reopen after installation. The installer offers an
+explicit restart action. Your computer supplies its own compatible Codex Desktop
+installation and sign-in. You can copy the EXE or DMG directly to another computer.
 
-[English installation, MCP connection and recovery guide](USER-GUIDE.en.md) · [Validation](VALIDATION.en.md)
+[English setup guide](installers/INSTALL.en.md) | [Complete buyer guide](USER-GUIDE.en.md)
+
+## Verified installer lifecycle
+
+Installer setup.1 packages companion 0.3.0-rc.4. All 34 cloud installation,
+upgrade and uninstall checks passed across Windows x64, Apple Silicon Mac and
+Intel Mac. They execute the final native installer, installed bundled Node,
+startup service, automatic local MCP setup, configuration-preserving upgrade
+and normal uninstaller. Existing unrelated configuration and a user file survive
+removal. [Exact scope and cloud runs](installers/VALIDATION.en.md).
+
+Current-release signed-in sidebar sorting, adapter recovery and complete client
+restart acceptance remain pending. Earlier 0.2.0 signed-in results describe that
+runtime. The community installers have no commercial code-signing certificate
+or Apple Developer ID notarization; downloaded software may need OS approval.
+
+![Windows setup on the independent cloud host](images/installers/windows-setup.png)
+![Mac setup on the independent cloud host](images/installers/mac-setup.png)
+
+## Sorting and updates
+
+Choose Recently updated, Date created, natural English Name or Manual in a
+supported sidebar sorting menu. Each project and sidebar scope saves a separate
+rule. Startup discovers the installed desktop app, checks the published adapter
+catalog and selects a matching local or accepted downloaded adapter. New interface
+families enter support after adaptation and native acceptance. The accepted
+repair catalog currently contains zero published packs.
+
+[Compatibility](COMPATIBILITY.en.md) | [Multi-version implementation](MULTIVERSION_COMPATIBILITY.en.md)
 
 ## Use from chat
 
-Install the companion on the same computer as Codex, connect its local stdio MCP service, and load the paid Skill through Agensi at the price displayed on the listing. Agensi supplies the Skill instructions. The free local service operates the Codex sidebar.
+The native installer connects the local Codex MCP service. Load the purchased
+[Agensi Skill](https://www.agensi.io/skills/codex-sidebar-sort) for agent-guided
+sorting. Agensi delivers the paid Skill separately. Cursor and Claude Desktop
+can connect the local service using the complete guide.
 
-[Codex Sidebar Sort on Agensi](https://www.agensi.io/skills/codex-sidebar-sort)
-
-## Compatibility
-
-Signed-in native sorting acceptance used Windows 26.1111.2228.0 and macOS 26.1111.21308, each with 30 projects and 360 test chats. macOS UI evidence uses Apple Silicon. Intel evidence covers packaging and installation.
-
-The companion recognizes verified renderer and storage contents after resource renames or relocation. Changes to renderer interfaces receive matching companion updates. Unknown interfaces open Codex through its normal path. Existing native projects and chat membership supply the grouping data, and sorting rules use separate addon-owned records.
-
-This repository publishes the free MIT-licensed companion downloads and public setup information. The development repository is maintained privately. Other MCP-capable agents provide the calling interface for the Codex Desktop sidebar.
-
-## Multi-version work
-
-The historical inventory contains 158 release records. The compatibility table records accepted and pending interfaces. Full signed-in acceptance currently covers Windows 26.1111.2228.0 x64 and macOS 26.1111.21308 arm64.
-
-The 0.3.0-rc.1 candidate checks the online adapter catalog at every startup, including starts with a healthy local adapter. It stages and validates matching published repairs, and retains a compatible local adapter after an update failure. Cloud execution is pending. Existing rc.2 installations need one transition upgrade to receive the updater after acceptance.
-
-The catalog currently contains zero accepted downloadable adapter packs. The current customer release is 0.2.0-rc.2. Its English guide describes the released upgrade process. Semantic discovery, new historical families, live activation recovery, foundation upgrades and continuous official-build monitoring remain development work.
-
-[Compatibility table](COMPATIBILITY.en.md) · [Startup updates and multi-version architecture](MULTIVERSION_COMPATIBILITY.en.md) · [Candidate status](receipts/multiversion-candidate-status.json)
+This repository contains free MIT companion distribution and installer source.
+The full development repository is private. The paid Skill and creator's full
+offline delivery kit are excluded from public Release assets. The portable
+platform ZIPs remain available for advanced installations.
