@@ -1,6 +1,6 @@
 # Installer and client validation
 
-This evidence applies to installer 0.3.0-setup.2 and desktop companion 0.3.0-rc.5.
+This evidence applies to installer 0.3.0-setup.2 and desktop companion 0.3.0.
 
 | Platform | Official client | Installer checks | Signed-out original-entry starts |
 | --- | --- | ---: | ---: |
@@ -28,4 +28,4 @@ online repair remain pending for rc.5. The screenshots show real cloud installer
 windows and a signed-out official desktop. The Windows runner is Windows Server
 2025 and the Mac runners use macOS 15.
 
-[Final cloud run](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/actions/runs/44216837597)
+[Final cloud run](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/actions/runs/44224786029)

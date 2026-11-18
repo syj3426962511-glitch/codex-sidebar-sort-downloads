@@ -1,5 +1,7 @@
 # Validation
 
+The current desktop release is 0.3.0. See [installer and client validation](installers/VALIDATION.en.md) for its tested builds and acceptance scope.
+
 ## Signed-in desktop sorting
 
 Windows 26.1111.2228.0 and macOS 26.1111.21308 were checked on independent cloud desktops with 30 real native projects and 360 test chats each. All five scope types passed recently-updated, creation-date, natural-name and manual ordering, automatic ascending and descending, reset, live renaming and production manual-editor saving.

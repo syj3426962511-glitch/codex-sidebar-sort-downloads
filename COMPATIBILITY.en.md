@@ -2,7 +2,7 @@
 
 ## Current release
 
-Companion 0.3.0-rc.5 and installer 0.3.0-setup.2 have the following cloud results.
+Companion 0.3.0 and installer 0.3.0-setup.2 have the following cloud results.
 
 | Official client | Native installer lifecycle | Original app launch with the companion | Signed-in sorting with this release |
 | --- | --- | --- | --- |
@@ -15,8 +15,8 @@ interface variant matches 13 interface modules and 25 sidebar hook positions.
 Every tested start reached the candidate renderer readiness marker and the
 desktop stayed closed after exit.
 
-[Current cloud run](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/actions/runs/44216837597) |
-[Current release](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/releases/tag/v0.3.0-rc.5)
+[Current cloud run](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/actions/runs/44224786029) |
+[Current release](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/releases/tag/v0.3.0)
 
 ## Historical acceptance
 
@@ -217,4 +217,4 @@ The component bootstrap can update its updater, platform launchers and startup m
 
 The structural discovery candidate has four legacy recipes based on 26.928.20755, 26.928.21956, 26.930.31730 and 26.1002.51308, each covering eleven hooks in eight function contexts. Unique function syntax trees, token boundaries and semantic renderer/import declarations determine selection. The schema-2 lexical signatures preserve shadowing and parameter-expression binding relationships. The native-v3 structural candidate adds thirteen required interfaces across three module factories, twenty-two integration points in eleven function contexts and three loader captures. Both paths await native acceptance. The 26.924 recipe needs its matching shared source.
 
-[Multi-version architecture](MULTIVERSION_COMPATIBILITY.en.md) · [Machine-readable history](compatibility/history.json) · [Current release receipt](receipts/release-0.3.0-rc.5.json)
+[Multi-version architecture](MULTIVERSION_COMPATIBILITY.en.md) · [Machine-readable history](compatibility/history.json) · [Current release receipt](receipts/release-0.3.0.json)

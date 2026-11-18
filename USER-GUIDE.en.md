@@ -1,8 +1,8 @@
 # English buyer guide
 
-## Current prerelease
+## Current release
 
-This guide accompanies desktop companion 0.3.0-rc.5 and Skill 0.3.1. Menus,
+This guide accompanies desktop companion 0.3.0 and Skill 0.3.1. Menus,
 diagnostics, installation documents, examples and test fixtures use English.
 Name sorting uses numeric-aware, case-insensitive English comparison.
 
@@ -59,16 +59,16 @@ agent-specific checks appear in the release report as they are completed.
 ## Download
 
 Choose the self-contained native installer matching your computer. These
-installers package the free 0.3.0-rc.5 companion and its complete Node.js runtime.
+installers package the free 0.3.0 companion and its complete Node.js runtime.
 
 - `Codex-Sidebar-Sort-Windows-x64-Setup.exe`
 - `Codex-Sidebar-Sort-Mac-Apple-Silicon.dmg`
 - `Codex-Sidebar-Sort-Mac-Intel.dmg`
 
-[Windows x64 EXE](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/releases/download/v0.3.0-rc.5/Codex-Sidebar-Sort-Windows-x64-Setup.exe)
-[Mac Apple Silicon DMG](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/releases/download/v0.3.0-rc.5/Codex-Sidebar-Sort-Mac-Apple-Silicon.dmg)
-[Mac Intel DMG](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/releases/download/v0.3.0-rc.5/Codex-Sidebar-Sort-Mac-Intel.dmg)
-[Release notes and package checks](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/releases/tag/v0.3.0-rc.5)
+[Windows x64 EXE](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/releases/download/v0.3.0/Codex-Sidebar-Sort-Windows-x64-Setup.exe)
+[Mac Apple Silicon DMG](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/releases/download/v0.3.0/Codex-Sidebar-Sort-Mac-Apple-Silicon.dmg)
+[Mac Intel DMG](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/releases/download/v0.3.0/Codex-Sidebar-Sort-Mac-Intel.dmg)
+[Release notes and package checks](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/releases/tag/v0.3.0)
 
 Use the compatibility information on the release page to check your desktop
 build before installing. The source repository is maintained privately. The
@@ -275,7 +275,7 @@ fields present in that installed version and preserve their actual messages.
 
 ### Startup updater development status
 
-The 0.3.0-rc.5 prerelease requests the online adapter catalog at each start. Its
+The 0.3.0 release requests the online adapter catalog at each start. Its
 implementation stages matching downloads, checks their integrity and JavaScript
 syntax, and preflights the installed interface. Startup activation recovery
 records the client process, selected build and renderer/storage signature. It
@@ -295,7 +295,7 @@ marker after exit and reopen. Signed-in sorting and settings retention use a
 separate test account. Automatic repair and recovery have isolated regression
 coverage. The published repair catalog is empty pending live acceptance.
 
-Current prerelease downloads supply companion 0.3.0-rc.5. Existing 0.2.0
+Current release downloads supply companion 0.3.0. Existing 0.2.0
 customers install this complete package once to receive its startup updater.
 The accepted-adapter catalog currently contains zero repair packs. Node.js
 interpreter upgrades, in-session recovery, broader historical native acceptance
