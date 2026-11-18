@@ -3,7 +3,8 @@ on:
   push:
     branches: [qa/rc5-signed-in]
 permissions:
-  contents: read
+  # The verified installer is still in a draft release.
+  contents: write
 jobs:
   apple-silicon:
     runs-on: macos-15
@@ -31,14 +32,18 @@ jobs:
           codesign --verify --deep --strict "$app"
           codesign -dv --verbose=4 "$app" 2>&1 | grep -q 'TeamIdentifier=2DC432GLL2'
           hdiutil detach official
-          cli="$app/Contents/Resources/codex"
+          cli="$app/Contents/Resources/codex-cli/bin/codex"
+          if [[ ! -x "$cli" ]]; then
+            cli="$app/Contents/Resources/codex"
+          fi
           test -x "$cli"
           install -d -m 700 "$HOME/.codex"
           printf 'cli_auth_credentials_store = "file"\n' > "$HOME/.codex/config.toml"
           hdiutil attach Codex-Sidebar-Sort-Mac-Apple-Silicon.dmg -nobrowse -readonly -mountpoint companion
           "companion/Install Codex Sidebar Sort.app/Contents/MacOS/Installer" --automated --destination "$RUNNER_TEMP/desktop-qa/sorter" --app "$app"
           hdiutil detach companion
-          printf 'QA_APP=%s\nQA_CLI=%s\n' "$app" "$cli" >> "$GITHUB_ENV"
+          node_path=$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))["nodePath"])' "$RUNNER_TEMP/desktop-qa/sorter/config.json")
+          printf 'QA_APP=%s\nQA_CLI=%s\nQA_NODE=%s\n' "$app" "$cli" "$node_path" >> "$GITHUB_ENV"
           npm install --prefix "$RUNNER_TEMP/qa-artifacts" --no-audit --no-fund @actions/artifact@2.3.2
       - name: Request official device approval and check the signed-in sidebar
         uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b
@@ -46,7 +51,7 @@ jobs:
           script: |
             const { spawn } = require('node:child_process');
             await new Promise((resolve, reject) => {
-              const worker = spawn('node', ['installers/cloud-desktop-account-qa.mjs'], {stdio: 'inherit'});
+              const worker = spawn(process.env.QA_NODE, ['installers/cloud-desktop-account-qa.mjs'], {stdio: 'inherit'});
               worker.once('error', reject);
               worker.once('close', code => code === 0 ? resolve() : reject(new Error('See the encrypted desktop QA receipt.')));
             });
