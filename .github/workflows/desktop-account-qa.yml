@@ -3,8 +3,7 @@ on:
   push:
     branches: [qa/rc5-signed-in]
 permissions:
-  # The verified installer is still in a draft release.
-  contents: write
+  contents: read
 jobs:
   apple-silicon:
     runs-on: macos-15
