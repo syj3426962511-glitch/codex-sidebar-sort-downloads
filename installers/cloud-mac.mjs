@@ -68,7 +68,8 @@ async function smokeDesktop(){
 try{
   await runGui(installer,['--automated','--destination',root,'--app',app],'01-mac-installation-wizard.png');
   const installed=JSON.parse(fs.readFileSync(path.join(root,'installer-manifest.json'),'utf8'));
-  if(installed.companionVersion!=='0.3.0-rc.5'||installed.installerVersion!=='0.3.0-setup.2')throw Error('Installed version differs from the candidate.');
+  const built=JSON.parse(fs.readFileSync(path.join(output,target+'-installer.json'),'utf8'));
+  if(installed.companionVersion!==built.companionVersion||installed.installerVersion!==built.installerVersion)throw Error('Installed version differs from its build receipt.');
   const config=JSON.parse(fs.readFileSync(path.join(root,'config.json'),'utf8'));
   if(!config.nodePath.startsWith(root+path.sep))throw Error('The installation depends on an external Node runtime.');
   console.log(exec(config.nodePath,['--version']));

@@ -2,6 +2,10 @@ name: Build and exercise native desktop installers
 on:
   workflow_dispatch:
     inputs:
+      release_tag:
+        description: Tag of the staged draft companion release
+        type: string
+        required: true
       target:
         description: Native installer target
         type: choice
@@ -20,13 +24,21 @@ jobs:
     timeout-minutes: 35
     env:
       GH_TOKEN: ${{ github.token }}
+      RELEASE_TAG: ${{ inputs.release_tag }}
     steps:
       - uses: actions/checkout@v4
       - name: Fetch the free companion payload from the staging release
         shell: bash
         run: |
+          set -euo pipefail
+          if [[ ! "$RELEASE_TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+(-[a-z0-9]+([.-][a-z0-9]+)*)?$ ]]; then
+            echo "::error::Use a companion release tag such as v0.3.0."
+            exit 1
+          fi
+          test "$(gh release view "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" --json isDraft --jq .isDraft)" = true
           mkdir -p "$RUNNER_TEMP/installer-payload"
-          gh release download v0.3.0-rc.5 --repo "$GITHUB_REPOSITORY" --pattern "codex-project-chat-sort-${{ matrix.target }}.zip" --pattern "desktop-packages.json" --dir "$RUNNER_TEMP/installer-payload"
+          gh release download "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" --pattern "codex-project-chat-sort-${{ matrix.target }}.zip" --pattern "desktop-packages.json" --dir "$RUNNER_TEMP/installer-payload"
+          python3 -c 'import json,sys; assert json.load(open(sys.argv[1]))["version"] == sys.argv[2], "Staged manifest does not match the release tag."' "$RUNNER_TEMP/installer-payload/desktop-packages.json" "${RELEASE_TAG#v}"
       - name: Prepare the Windows installer compiler
         if: runner.os == 'Windows'
         shell: powershell
@@ -100,10 +112,12 @@ jobs:
       - name: Stage installers with passed lifecycle receipts
         shell: bash
         run: |
+          python3 -c 'import json; p=json.load(open("dist/desktop-smoke.json", encoding="utf-8-sig")); assert p["passed"] is True and len(p["cycles"]) == 2, "Two successful original-entry starts are required."'
+          test "$(gh release view "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" --json isDraft --jq .isDraft)" = true
           if [[ "$RUNNER_OS" == "Windows" ]]; then
-            gh release upload v0.3.0-rc.5 dist/Codex-Sidebar-Sort-Windows-x64-Setup.exe dist/win-x64-installer.json --repo "$GITHUB_REPOSITORY" --clobber
+            gh release upload "$RELEASE_TAG" dist/Codex-Sidebar-Sort-Windows-x64-Setup.exe dist/win-x64-installer.json --repo "$GITHUB_REPOSITORY" --clobber
           else
-            gh release upload v0.3.0-rc.5 dist/Codex-Sidebar-Sort-Mac-*.dmg "dist/${{ matrix.target }}-installer.json" --repo "$GITHUB_REPOSITORY" --clobber
+            gh release upload "$RELEASE_TAG" dist/Codex-Sidebar-Sort-Mac-*.dmg "dist/${{ matrix.target }}-installer.json" --repo "$GITHUB_REPOSITORY" --clobber
           fi
       - name: Retain native screenshots and diagnostics
         if: always()

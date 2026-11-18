@@ -32,7 +32,8 @@ foreach($name in @('ChatGPT.lnk','Codex.lnk')){
 $run=Start-Process -FilePath $installer -ArgumentList @('/S',('/D='+$root)) -PassThru -Wait
 if($run.ExitCode -ne 0){throw "The final installer failed with exit code $($run.ExitCode)."}
 $manifest=Get-Content -LiteralPath (Join-Path $root 'installer-manifest.json') -Raw|ConvertFrom-Json
-if($manifest.companionVersion -ne '0.3.0-rc.5' -or $manifest.installerVersion -ne '0.3.0-setup.2'){throw 'Installed version differs from the candidate.'}
+$buildReceipt=Get-Content -LiteralPath (Join-Path $output 'win-x64-installer.json') -Raw|ConvertFrom-Json
+if($manifest.companionVersion -ne $buildReceipt.companionVersion -or $manifest.installerVersion -ne $buildReceipt.installerVersion){throw 'Installed version differs from its build receipt.'}
 $config=Get-Content -LiteralPath (Join-Path $root 'config.json') -Raw|ConvertFrom-Json
 if(-not $config.nodePath.StartsWith($root+'\')){throw 'The installation depends on an external Node runtime.'}
 & $config.nodePath --version
