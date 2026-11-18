@@ -256,6 +256,8 @@ restoring a backup.
 If Windows shows **Sorting did not start**, run the read-only diagnostics on
 the affected computer. The report identifies the installed desktop package,
 companion, startup service and most recent activation result.
+The script displays the path of `Codex-Sidebar-Sort-diagnostic.txt` as soon
+as it creates the report. It reads existing status files using Windows commands.
 [Windows startup diagnostics](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/releases/download/v0.3.1/Codex-Sidebar-Sort-Diagnostics.cmd)
 
 Record the actual desktop version, companion version and operating-system
