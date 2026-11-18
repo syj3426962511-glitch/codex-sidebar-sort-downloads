@@ -12,9 +12,9 @@ connection are included. No separate runtime or terminal setup is required.
 
 | Computer | Self-contained installer | Size |
 | --- | --- | --- |
-| Windows x64 | [EXE setup wizard](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/releases/download/v0.3.0-rc.4/Codex-Sidebar-Sort-Windows-x64-Setup.exe) | 21.57 MiB |
-| Mac Apple Silicon | [DMG installer](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/releases/download/v0.3.0-rc.4/Codex-Sidebar-Sort-Mac-Apple-Silicon.dmg) | 40.89 MiB |
-| Mac Intel | [DMG installer](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/releases/download/v0.3.0-rc.4/Codex-Sidebar-Sort-Mac-Intel.dmg) | 42.37 MiB |
+| Windows x64 | [EXE setup wizard](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/releases/download/v0.3.0-rc.5/Codex-Sidebar-Sort-Windows-x64-Setup.exe) | 21.58 MiB |
+| Mac Apple Silicon | [DMG installer](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/releases/download/v0.3.0-rc.5/Codex-Sidebar-Sort-Mac-Apple-Silicon.dmg) | 40.95 MiB |
+| Mac Intel | [DMG installer](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/releases/download/v0.3.0-rc.5/Codex-Sidebar-Sort-Mac-Intel.dmg) | 42.41 MiB |
 
 Save work, close Codex and reopen after installation. The installer offers an
 explicit restart action. Your computer supplies its own compatible Codex Desktop
@@ -24,17 +24,15 @@ installation and sign-in. You can copy the EXE or DMG directly to another comput
 
 ## Verified installer lifecycle
 
-Installer setup.1 packages companion 0.3.0-rc.4. All 34 cloud installation,
-upgrade and uninstall checks passed across Windows x64, Apple Silicon Mac and
-Intel Mac. They execute the final native installer, installed bundled Node,
-startup service, automatic local MCP setup, configuration-preserving upgrade
-and normal uninstaller. Existing unrelated configuration and a user file survive
-removal. [Exact scope and cloud runs](installers/VALIDATION.en.md).
+Installer 0.3.0-setup.2 packages companion 0.3.0-rc.5. The final binaries passed
+34 install, upgrade and uninstall checks and six original-entry, signed-out
+desktop launches across Windows x64, Apple Silicon Mac and Intel Mac.
+The Mac release recognizes ChatGPT 26.1111.71025 on both processor types.
+[Tested client builds and validation scope](installers/VALIDATION.en.md).
 
-Current-release signed-in sidebar sorting, adapter recovery and complete client
-restart acceptance remain pending. Earlier 0.2.0 signed-in results describe that
-runtime. The community installers have no commercial code-signing certificate
-or Apple Developer ID notarization; downloaded software may need OS approval.
+Current-release signed-in acceptance and live repair delivery remain in progress.
+The community installers have no commercial code-signing certificate or Apple
+Developer ID notarization. Your operating system may request approval.
 
 ![Windows setup on the independent cloud host](images/installers/windows-setup.png)
 ![Mac setup on the independent cloud host](images/installers/mac-setup.png)

@@ -1,0 +1,244 @@
+{
+  "version": "0.3.0-rc.5",
+  "prerelease": true,
+  "installerVersion": "0.3.0-setup.2",
+  "packages": [
+    {
+      "file": "codex-project-chat-sort-win-x64.zip",
+      "target": "win-x64",
+      "version": "0.3.0-rc.5",
+      "bytes": 35279109,
+      "sha256": "041a9a63b512a88c0da1321eb575556f12c0c78dc810353bc9338a0818919636",
+      "files": 71,
+      "nodeVersion": "v22.23.4",
+      "sourceNodePackageSha256": "72b91555664b5b1206580071024e4bd705b5f93b359dcaf3010b09da074931dd",
+      "archiveCrcPassed": true,
+      "englishTextChecked": true,
+      "nativeFunctionalAcceptance": "pending-independent-cloud-execution",
+      "bundledRuntimeExecutedDuringThisBuild": false
+    },
+    {
+      "file": "codex-project-chat-sort-darwin-arm64.zip",
+      "target": "darwin-arm64",
+      "version": "0.3.0-rc.5",
+      "bytes": 39412202,
+      "sha256": "eff632c1ec8de5c13551c1c0635808b4d381703804188a29dba284638abf386f",
+      "files": 71,
+      "nodeVersion": "v22.23.4",
+      "sourceNodePackageSha256": "db66646e0c8c5dd50293c079fba16cd3c0e3f82d1db124b5967a76f6e7c98c1f",
+      "archiveCrcPassed": true,
+      "englishTextChecked": true,
+      "nativeFunctionalAcceptance": "pending-independent-cloud-execution",
+      "bundledRuntimeExecutedDuringThisBuild": false
+    },
+    {
+      "file": "codex-project-chat-sort-darwin-x64.zip",
+      "target": "darwin-x64",
+      "version": "0.3.0-rc.5",
+      "bytes": 40789983,
+      "sha256": "2f9c3cfef56cbba041b06318e049e57c135870516bcc1b6ad5bbf139fcef4c38",
+      "files": 71,
+      "nodeVersion": "v22.23.2",
+      "sourceNodePackageSha256": "94378bc4e9cc61d5f4dc4467a6511e591119d0ddeb72913c1337f4c428a4c25f",
+      "archiveCrcPassed": true,
+      "englishTextChecked": true,
+      "nativeFunctionalAcceptance": "pending-independent-cloud-execution",
+      "bundledRuntimeExecutedDuringThisBuild": false
+    }
+  ],
+  "nativeInstallers": [
+    {
+      "installerVersion": "0.3.0-setup.2",
+      "companionVersion": "0.3.0-rc.5",
+      "target": "win-x64",
+      "file": "Codex-Sidebar-Sort-Windows-x64-Setup.exe",
+      "bytes": 22627712,
+      "sha256": "576d58c04429827c0c235173ad3c9f4653b7ea2f1d88e22678c61151984380f7",
+      "sourcePackageSha256": "041a9a63b512a88c0da1321eb575556f12c0c78dc810353bc9338a0818919636",
+      "bundledNode": true,
+      "paidSkillIncluded": false,
+      "commercialCodeSigning": false,
+      "nativeInstallerLifecycle": "passed",
+      "authenticatedNativeSorting": "pending-independent-cloud-login",
+      "run": "https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/actions/runs/44216837597",
+      "checks": [
+        "normal installer entry",
+        "custom folder with spaces",
+        "bundled Node execution",
+        "startup task running",
+        "automatic MCP configuration",
+        "unrelated MCP preserved",
+        "upgrade configuration retained",
+        "normal uninstall entry",
+        "startup removed",
+        "MCP removed",
+        "unrelated user file retained",
+        "owned shortcut restored"
+      ],
+      "officialClient": {
+        "Name": "OpenAI.Codex",
+        "Version": "26.1111.2228.0",
+        "Publisher": "CN=50BDFD77-8903-4850-9FFE-6E8522F64D5B",
+        "SignatureKind": 3
+      },
+      "desktopStartup": {
+        "authenticated": false,
+        "error": null,
+        "cycles": [
+          {
+            "appPid": 604,
+            "rendererReady": true,
+            "build": "d431e87667c65dc0a2506156c4e76da8edd9eaa69ce85f89b5e513b3fa6a2fd0",
+            "cycle": 1
+          },
+          {
+            "appPid": 3672,
+            "rendererReady": true,
+            "build": "d431e87667c65dc0a2506156c4e76da8edd9eaa69ce85f89b5e513b3fa6a2fd0",
+            "cycle": 2
+          }
+        ],
+        "passed": true
+      },
+      "screenshots": [
+        "evidence/win-x64-final/evidence/01-windows-installation-wizard.png",
+        "evidence/win-x64-final/evidence/02-windows-installed-desktop.png",
+        "evidence/win-x64-final/evidence/03-codex-normal-start-1.png",
+        "evidence/win-x64-final/evidence/03-codex-normal-start-2.png"
+      ]
+    },
+    {
+      "installerVersion": "0.3.0-setup.2",
+      "companionVersion": "0.3.0-rc.5",
+      "target": "darwin-arm64",
+      "file": "Codex-Sidebar-Sort-Mac-Apple-Silicon.dmg",
+      "bytes": 42942159,
+      "sha256": "b58547040214410250af8f560ba284e442029a4d6c288b2c7c746eee4dbd5849",
+      "sourcePackageSha256": "eff632c1ec8de5c13551c1c0635808b4d381703804188a29dba284638abf386f",
+      "bundledNode": true,
+      "paidSkillIncluded": false,
+      "commercialCodeSigning": false,
+      "nativeInstallerLifecycle": "passed",
+      "authenticatedNativeSorting": "pending-independent-cloud-login",
+      "run": "https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/actions/runs/44216837597",
+      "checks": [
+        "normal GUI installer entry",
+        "custom folder with spaces",
+        "bundled Node execution",
+        "startup LaunchAgent running",
+        "automatic MCP configuration",
+        "unrelated MCP preserved",
+        "upgrade configuration retained",
+        "normal GUI uninstall entry",
+        "startup removed",
+        "MCP removed",
+        "unrelated user file retained"
+      ],
+      "officialClient": {
+        "app": "/Applications/ChatGPT.app",
+        "version": "26.1111.71025",
+        "executable": "/Applications/ChatGPT.app/Contents/MacOS/ChatGPT",
+        "architectures": [
+          "arm64"
+        ]
+      },
+      "desktopStartup": {
+        "passed": true,
+        "authenticated": false,
+        "cycles": [
+          {
+            "cycle": 1,
+            "appPid": 2863,
+            "build": "d431e87667c65dc0a2506156c4e76da8edd9eaa69ce85f89b5e513b3fa6a2fd0",
+            "rendererReady": true
+          },
+          {
+            "cycle": 2,
+            "appPid": 4268,
+            "build": "d431e87667c65dc0a2506156c4e76da8edd9eaa69ce85f89b5e513b3fa6a2fd0",
+            "rendererReady": true
+          }
+        ]
+      },
+      "screenshots": [
+        "evidence/darwin-arm64-final/evidence/00-mac-native-installer.png",
+        "evidence/darwin-arm64-final/evidence/01-mac-installation-wizard.png",
+        "evidence/darwin-arm64-final/evidence/02-mac-upgrade-wizard.png",
+        "evidence/darwin-arm64-final/evidence/03-mac-uninstall-wizard.png",
+        "evidence/darwin-arm64-final/evidence/04-codex-normal-start-1.png",
+        "evidence/darwin-arm64-final/evidence/04-codex-normal-start-2.png"
+      ]
+    },
+    {
+      "installerVersion": "0.3.0-setup.2",
+      "companionVersion": "0.3.0-rc.5",
+      "target": "darwin-x64",
+      "file": "Codex-Sidebar-Sort-Mac-Intel.dmg",
+      "bytes": 44472958,
+      "sha256": "81239c838863bc365372b51f701d38359708d74542d50f005e8d844037c5d6bf",
+      "sourcePackageSha256": "2f9c3cfef56cbba041b06318e049e57c135870516bcc1b6ad5bbf139fcef4c38",
+      "bundledNode": true,
+      "paidSkillIncluded": false,
+      "commercialCodeSigning": false,
+      "nativeInstallerLifecycle": "passed",
+      "authenticatedNativeSorting": "pending-independent-cloud-login",
+      "run": "https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/actions/runs/44216837597",
+      "checks": [
+        "normal GUI installer entry",
+        "custom folder with spaces",
+        "bundled Node execution",
+        "startup LaunchAgent running",
+        "automatic MCP configuration",
+        "unrelated MCP preserved",
+        "upgrade configuration retained",
+        "normal GUI uninstall entry",
+        "startup removed",
+        "MCP removed",
+        "unrelated user file retained"
+      ],
+      "officialClient": {
+        "app": "/Applications/ChatGPT.app",
+        "version": "26.1111.71025",
+        "executable": "/Applications/ChatGPT.app/Contents/MacOS/ChatGPT",
+        "architectures": [
+          "x86_64"
+        ]
+      },
+      "desktopStartup": {
+        "passed": true,
+        "authenticated": false,
+        "cycles": [
+          {
+            "cycle": 1,
+            "appPid": 3402,
+            "build": "d431e87667c65dc0a2506156c4e76da8edd9eaa69ce85f89b5e513b3fa6a2fd0",
+            "rendererReady": true
+          },
+          {
+            "cycle": 2,
+            "appPid": 4328,
+            "build": "d431e87667c65dc0a2506156c4e76da8edd9eaa69ce85f89b5e513b3fa6a2fd0",
+            "rendererReady": true
+          }
+        ]
+      },
+      "screenshots": [
+        "evidence/darwin-x64-final/evidence/00-mac-native-installer.png",
+        "evidence/darwin-x64-final/evidence/01-mac-installation-wizard.png",
+        "evidence/darwin-x64-final/evidence/02-mac-upgrade-wizard.png",
+        "evidence/darwin-x64-final/evidence/03-mac-uninstall-wizard.png",
+        "evidence/darwin-x64-final/evidence/04-codex-normal-start-1.png",
+        "evidence/darwin-x64-final/evidence/04-codex-normal-start-2.png"
+      ]
+    }
+  ],
+  "fixtureTests": {
+    "tests": 192,
+    "pass": 192,
+    "fail": 0,
+    "skipped": 0
+  },
+  "nativeFunctionalTestsExecuted": false,
+  "nativeFunctionalAcceptance": "pending-independent-authenticated-acceptance",
+  "acceptedRepairPacksPublished": 0
+}

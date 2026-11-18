@@ -2,14 +2,35 @@
 
 ## Current release
 
-Agensi Skill 1.1 uses companion 0.2.0-rc.2. Signed-in native acceptance covers Windows 26.1111.2228.0 x64 and macOS 26.1111.21308 arm64, with 30 projects and 360 test chats per platform. Intel Mac evidence covers packaging and installation. The rc.2 native sorting and preference runtime matches the accepted rc.1 source after line-ending normalization.
+Companion 0.3.0-rc.5 and installer 0.3.0-setup.2 have the following cloud results.
 
-Resource renames and relocation are recognized by verified content. Fresh-profile Windows/Mac startup and restart checks, 119 automated tests per OS, 22 Skill checks per OS and all three delivered package installation checks passed for rc.2.
+| Official client | Native installer lifecycle | Original app launch with the companion | Signed-in sorting with this release |
+| --- | --- | --- | --- |
+| Windows x64 26.1111.2228.0 | Passed | Two signed-out starts passed | Pending |
+| Apple Silicon Mac 26.1111.71025 | Passed | Two signed-out starts passed | Pending |
+| Intel Mac 26.1111.71025 | Passed | Two signed-out starts passed | Pending |
+
+The Mac builds use separate official arm64 and x64 images. On both, the new
+interface variant matches 13 interface modules and 25 sidebar hook positions.
+Every tested start reached the candidate renderer readiness marker and the
+desktop stayed closed after exit.
+
+[Current cloud run](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/actions/runs/44216837597) |
+[Current release](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/releases/tag/v0.3.0-rc.5)
+
+## Historical acceptance
+
+Earlier 0.2.0 signed-in evidence covers Windows 26.1111.2228.0 x64 and macOS
+26.1111.21308 arm64 with 30 projects and 360 test chats per platform. The rc.2
+native sorting and preference code matches the accepted rc.1 source after
+line-ending normalization. The release has 119 automated tests and 22 Skill
+checks per OS and three delivered package installation checks.
 
 ## Existing interface profiles
 
 | Renderer | Recorded Windows package | Adapter family | Acceptance coverage |
 | --- | --- | --- | --- |
+| 26.1111.71025 | Not sampled | native-v3 structural variant | Mac arm64 and x64 source and startup passed with rc.5, signed-in acceptance pending |
 | 26.1111.21308 | 26.1111.2228.0 | native-v3 | Windows x64 and Mac arm64 full native matrix |
 | 26.1002.51308 | 26.1002.6548.0 | legacy-sidebar-v2 | Historical partial/source checks, refreshed full matrix pending |
 | 26.930.31730 | 26.930.3930.0 | legacy-sidebar-v2 | Historical partial/source checks, refreshed full matrix pending |
@@ -186,8 +207,14 @@ Windows package and Mac renderer release schedules differ. The underlying Window
 
 ## Automatic adapter maintenance
 
-The 0.3.0-rc.1 candidate requests the adapter catalog at every startup, including starts with a healthy local adapter. It adds accepted-adapter downloads, staging syntax checks, installed preflight, atomic cache selection, offline reuse and version/update diagnostics. Existing rc.2 installations need one transition upgrade to receive the updater. The released rc.2 guide describes the current manual upgrade procedure.
+The 0.3.0-rc.3 candidate requests the adapter catalog at every startup, including starts with a healthy local adapter. It adds accepted-adapter downloads, staging syntax checks, installed preflight, atomic cache selection, offline reuse and version/update diagnostics. Existing rc.2 installations need one transition upgrade to receive the updater. The released rc.2 guide describes the current manual upgrade procedure.
 
-GitHub runner admission prevented the candidate cloud tests from starting. New regression cases and historical inspection have zero completed execution steps. Semantic AST discovery, broader family adapters, live activation rollback, foundation self-upgrade and continuous official-build monitoring remain development work.
+GitHub runner admission prevented the candidate cloud tests from starting. The candidate's 64 dedicated regression cases await execution. Six saved source samples have static AST inspection, with four candidate structure groups. Broader historical native acceptance, in-session health recovery, Node.js interpreter upgrades and continuous official-build monitoring remain development work.
 
-[Multi-version architecture](MULTIVERSION_COMPATIBILITY.en.md) · [Machine-readable history](compatibility/history.json) · [Current release receipt](receipts/release-0.2.0-rc.2.json)
+Startup activation recovery is now implemented in the candidate. It records fresh renderer health, skips runtime/interface pairs that failed startup, tries a compatible local recovery runtime and reloads the native renderer after failed recovery. Early client closure, damaged health metadata and missing adapter files have dedicated recovery or diagnostic paths. Windows selects the runtime and activates its renderer under the same launch mutex.
+
+The component bootstrap can update its updater, platform launchers and startup monitors before client archive discovery. Existing MCP connections follow selected adapter replacements and read current configuration. These paths await independent cloud execution and native lifecycle acceptance.
+
+The structural discovery candidate has four legacy recipes based on 26.928.20755, 26.928.21956, 26.930.31730 and 26.1002.51308, each covering eleven hooks in eight function contexts. Unique function syntax trees, token boundaries and semantic renderer/import declarations determine selection. The schema-2 lexical signatures preserve shadowing and parameter-expression binding relationships. The native-v3 structural candidate adds thirteen required interfaces across three module factories, twenty-two integration points in eleven function contexts and three loader captures. Both paths await native acceptance. The 26.924 recipe needs its matching shared source.
+
+[Multi-version architecture](MULTIVERSION_COMPATIBILITY.en.md) · [Machine-readable history](compatibility/history.json) · [Current release receipt](receipts/release-0.3.0-rc.5.json)

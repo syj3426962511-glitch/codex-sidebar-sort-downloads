@@ -1,32 +1,31 @@
-# Native installer validation
+# Installer and client validation
 
-Installer version `0.3.0-setup.1` packages desktop companion `0.3.0-rc.4`.
-All three platform lifecycle runs passed on independent GitHub-hosted systems.
-The user's personal desktop was not installed, injected into or restarted.
+This evidence applies to installer 0.3.0-setup.2 and desktop companion 0.3.0-rc.5.
 
-| Installer | Cloud platform | Official client | Result |
-| --- | --- | --- | --- |
-| Windows x64 EXE | Windows Server 2025 x64 | OpenAI.Codex 26.1111.2228.0 | 12 lifecycle checks passed |
-| Mac Apple Silicon DMG | macOS 15 arm64 | ChatGPT.app 26.1111.21308 | 11 lifecycle checks passed |
-| Mac Intel DMG | macOS 15 x64 | ChatGPT.app 26.1111.21308 | 11 lifecycle checks passed |
+| Platform | Official client | Installer checks | Signed-out original-entry starts |
+| --- | --- | ---: | ---: |
+| Windows x64 | OpenAI.Codex 26.1111.2228.0 | 12 | 2 |
+| Apple Silicon Mac | ChatGPT 26.1111.71025 arm64 | 11 | 2 |
+| Intel Mac | ChatGPT 26.1111.71025 x64 | 11 | 2 |
 
-Checks executed the final native installer and its uninstall entry. They cover
-the custom folder with spaces, installed bundled Node, running startup service,
-automatic local Codex MCP configuration, preservation of another MCP entry,
-upgrade retention of installed configuration, service/MCP removal and retention
-of an unrelated user file. Windows also verifies the owned shortcut restore
-through its uninstall flow. Mac installation, upgrade and removal execute the
-actual GUI app; the automated cloud driver invokes the same Install action.
+The cloud jobs install the final packages into paths with spaces, run the
+bundled Node, validate startup and local MCP registration, upgrade in place,
+then remove the companion. Uninstall preserves an unrelated user file and a
+separate MCP entry. Each official desktop opens twice from its original entry,
+exposes the candidate renderer marker, and stays closed after exit.
 
-The screenshots show actual native installer windows captured on those hosts.
-They are installation evidence. Current-runtime signed-in sidebar sorting,
-adapter recovery and complete client restart acceptance remain pending.
-Historical 0.2.0 sorting results retain their original runtime scope.
+The official Mac package was first reproduced with a failed interface match.
+Two observed module variants restored source discovery. The patched source
+passed parsing and the final artifact passed the two-start test on each Mac
+architecture. The official Intel image contains an x86_64 executable.
 
-- [Windows run](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/actions/runs/44133314834)
-- [Apple Silicon run](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/actions/runs/44132955737)
-- [Intel Mac run](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/actions/runs/44133323790)
+All 192 source and fixture tests passed, including account isolation, manual
+membership validation, single-write sorting, malformed and user-edited MCP
+configuration, failed startup rollback and update recovery fixtures.
 
-The binary digests, exact checks and local-retention status are recorded in
-`native-installers.json` on the release. Installers are community builds without
-commercial code signing or Apple Developer ID notarization.
+Signed-in sidebar sorting, stored rule retention and acceptance of a published
+online repair remain pending for rc.5. The screenshots show real cloud installer
+windows and a signed-out official desktop. The Windows runner is Windows Server
+2025 and the Mac runners use macOS 15.
+
+[Final cloud run](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/actions/runs/44216837597)

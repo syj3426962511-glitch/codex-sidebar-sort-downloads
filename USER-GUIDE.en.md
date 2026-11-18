@@ -2,16 +2,15 @@
 
 ## Current prerelease
 
-This guide accompanies desktop companion 0.3.0-rc.4 and Skill 0.3.0. Menus,
+This guide accompanies desktop companion 0.3.0-rc.5 and Skill 0.3.1. Menus,
 diagnostics, installation documents, examples and test fixtures use English.
 Name sorting uses numeric-aware, case-insensitive English comparison.
 
-The current packages contain structural interface discovery, startup catalog
-checks, component updates, local activation recovery and MCP runtime refresh.
-Native sorting, update/recovery and complete restart acceptance for this
-prerelease remains pending independent cloud execution. The platform and
-desktop package checks are described in the release receipt. Historical
-0.2.0 evidence is identified separately below.
+This release adds the macOS ChatGPT 26.1111.71025 interface, saves each rule in
+one write and preserves existing MCP settings during installation and removal.
+The published compatibility table lists the exact desktop builds used for
+installer, startup and signed-in testing. Earlier 0.2.0 signed-in evidence
+describes that runtime.
 
 ## Included with the purchase
 
@@ -29,8 +28,10 @@ Your existing Codex Desktop account supplies the login.
 ## Computers and compatibility
 
 - Windows x64 uses the registered official Codex Desktop package.
-- Apple Silicon Macs use the `darwin-arm64` download.
-- Intel Macs use the `darwin-x64` download.
+- Apple Silicon Macs use the Apple Silicon companion DMG and official arm64
+  ChatGPT Desktop.
+- Intel Macs use the Intel companion DMG and official x64 ChatGPT Desktop.
+  Select the matching official client at [ChatGPT downloads](https://chatgpt.com/download/).
 
 Downloads include Node.js and its license. Setup copies it into the durable
 installation. At startup, the companion discovers the current desktop and
@@ -58,16 +59,16 @@ agent-specific checks appear in the release report as they are completed.
 ## Download
 
 Choose the self-contained native installer matching your computer. These
-installers package the free 0.3.0-rc.4 companion and its complete Node.js runtime.
+installers package the free 0.3.0-rc.5 companion and its complete Node.js runtime.
 
 - `Codex-Sidebar-Sort-Windows-x64-Setup.exe`
 - `Codex-Sidebar-Sort-Mac-Apple-Silicon.dmg`
 - `Codex-Sidebar-Sort-Mac-Intel.dmg`
 
-[Windows x64 EXE](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/releases/download/v0.3.0-rc.4/Codex-Sidebar-Sort-Windows-x64-Setup.exe)
-[Mac Apple Silicon DMG](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/releases/download/v0.3.0-rc.4/Codex-Sidebar-Sort-Mac-Apple-Silicon.dmg)
-[Mac Intel DMG](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/releases/download/v0.3.0-rc.4/Codex-Sidebar-Sort-Mac-Intel.dmg)
-[Release notes and package checks](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/releases/tag/v0.3.0-rc.4)
+[Windows x64 EXE](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/releases/download/v0.3.0-rc.5/Codex-Sidebar-Sort-Windows-x64-Setup.exe)
+[Mac Apple Silicon DMG](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/releases/download/v0.3.0-rc.5/Codex-Sidebar-Sort-Mac-Apple-Silicon.dmg)
+[Mac Intel DMG](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/releases/download/v0.3.0-rc.5/Codex-Sidebar-Sort-Mac-Intel.dmg)
+[Release notes and package checks](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/releases/tag/v0.3.0-rc.5)
 
 Use the compatibility information on the release page to check your desktop
 build before installing. The source repository is maintained privately. The
@@ -274,7 +275,7 @@ fields present in that installed version and preserve their actual messages.
 
 ### Startup updater development status
 
-The 0.3.0-rc.4 prerelease requests the online adapter catalog at each start. Its
+The 0.3.0-rc.5 prerelease requests the online adapter catalog at each start. Its
 implementation stages matching downloads, checks their integrity and JavaScript
 syntax, and preflights the installed interface. Startup activation recovery
 records the client process, selected build and renderer/storage signature. It
@@ -287,14 +288,14 @@ rule set. The native structural candidate covers thirteen required interfaces
 and twenty-two sorting integration points. Lexical signatures preserve renamed
 variables, parameter expressions and shadowed bindings.
 
-The English release has 111 source-file syntax checks and checked platform and
-Skill archives. Native installer lifecycle receipts cover installation, upgrade,
-bundled-runtime execution, startup service registration, automatic MCP setup
-and uninstall on the platforms that passed their cloud run. Signed-in sorting,
-updater/recovery and complete client restart acceptance for this runtime are
-tracked separately. Read the actual platform receipt on the release page.
+Read the platform receipts on the release page. They cover the final installer,
+upgrade, bundled runtime, startup registration, MCP setup and uninstall.
+The launch checks use a signed-out desktop and record the renderer readiness
+marker after exit and reopen. Signed-in sorting and settings retention use a
+separate test account. Automatic repair and recovery have isolated regression
+coverage. The published repair catalog is empty pending live acceptance.
 
-Current prerelease downloads supply companion 0.3.0-rc.4. Existing 0.2.0
+Current prerelease downloads supply companion 0.3.0-rc.5. Existing 0.2.0
 customers install this complete package once to receive its startup updater.
 The accepted-adapter catalog currently contains zero repair packs. Node.js
 interpreter upgrades, in-session recovery, broader historical native acceptance
@@ -325,3 +326,4 @@ error and relevant state-file messages. Review screenshots for personal data
 before sharing them.
 
 [Companion downloads and support](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads)
+
