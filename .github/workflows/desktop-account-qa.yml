@@ -1,0 +1,52 @@
+name: Independent signed-in desktop check
+on:
+  push:
+    branches: [qa/rc5-signed-in]
+permissions:
+  contents: read
+jobs:
+  apple-silicon:
+    runs-on: macos-15
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - name: Prepare the official and companion installers
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/desktop-qa/official" "$RUNNER_TEMP/desktop-qa/companion"
+          cd "$RUNNER_TEMP/desktop-qa"
+          gh release download v0.3.0-rc.5 -R "$GITHUB_REPOSITORY" -p Codex-Sidebar-Sort-Mac-Apple-Silicon.dmg
+          printf '%s  %s\n' b58547040214410250af8f560ba284e442029a4d6c288b2c7c746eee4dbd5849 Codex-Sidebar-Sort-Mac-Apple-Silicon.dmg | shasum -a 256 -c
+          curl --fail --location --retry 2 --max-time 240 https://persistent.oaistatic.com/codex-app-prod/Codex.dmg -o Codex.dmg
+          hdiutil attach Codex.dmg -nobrowse -readonly -mountpoint official
+          apps=(official/*.app)
+          test "${#apps[@]}" -eq 1
+          app="/Applications/$(basename "${apps[0]}")"
+          ditto "${apps[0]}" "$app"
+          codesign --verify --deep --strict "$app"
+          codesign -dv --verbose=4 "$app" 2>&1 | grep -q 'TeamIdentifier=2DC432GLL2'
+          hdiutil detach official
+          cli="$app/Contents/Resources/codex"
+          test -x "$cli"
+          install -d -m 700 "$HOME/.codex"
+          printf 'cli_auth_credentials_store = "file"\n' > "$HOME/.codex/config.toml"
+          hdiutil attach Codex-Sidebar-Sort-Mac-Apple-Silicon.dmg -nobrowse -readonly -mountpoint companion
+          "companion/Install Codex Sidebar Sort.app/Contents/MacOS/Installer" --automated --destination "$RUNNER_TEMP/desktop-qa/sorter" --app "$app"
+          hdiutil detach companion
+          printf 'QA_APP=%s\nQA_CLI=%s\n' "$app" "$cli" >> "$GITHUB_ENV"
+          npm install --prefix "$RUNNER_TEMP/qa-artifacts" --no-audit --no-fund @actions/artifact@2.3.2
+      - name: Request official device approval and check the signed-in sidebar
+        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b
+        with:
+          script: |
+            const { spawn } = require('node:child_process');
+            await new Promise((resolve, reject) => {
+              const worker = spawn('node', ['installers/cloud-desktop-account-qa.mjs'], {stdio: 'inherit'});
+              worker.once('error', reject);
+              worker.once('close', code => code === 0 ? resolve() : reject(new Error('See the encrypted desktop QA receipt.')));
+            });
