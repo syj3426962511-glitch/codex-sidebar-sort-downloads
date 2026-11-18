@@ -10,10 +10,8 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - os: macos-15
-            target: darwin-arm64
           - os: macos-15-intel
-            target: darwin-x64
+            target: darwin-arm64
     runs-on: ${{ matrix.os }}
     timeout-minutes: 15
     steps:
@@ -29,6 +27,7 @@ jobs:
       - name: Build the native disk image
         run: |
           python3 installers/build.py --target "${{ matrix.target }}" --zip "payload/codex-project-chat-sort-${{ matrix.target }}.zip" --manifest payload/desktop-packages.json --out dist
+          lipo -archs "dist/stage-${{ matrix.target }}/disk/Install Codex Sidebar Sort.app/Contents/MacOS/Installer" | grep -x arm64
       - uses: actions/upload-artifact@v4
         with:
           name: macos-0.3.1-${{ matrix.target }}
