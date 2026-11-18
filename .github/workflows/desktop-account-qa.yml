@@ -1,9 +1,9 @@
 name: Independent signed-in desktop check
 on:
   push:
-    branches: [qa/rc5-signed-in]
+    branches: [qa/0.3.0-signed-in]
 permissions:
-  contents: read
+  contents: write
 jobs:
   apple-silicon:
     runs-on: macos-15
@@ -20,8 +20,8 @@ jobs:
           set -euo pipefail
           mkdir -p "$RUNNER_TEMP/desktop-qa/official" "$RUNNER_TEMP/desktop-qa/companion"
           cd "$RUNNER_TEMP/desktop-qa"
-          gh release download v0.3.0-rc.5 -R "$GITHUB_REPOSITORY" -p Codex-Sidebar-Sort-Mac-Apple-Silicon.dmg
-          printf '%s  %s\n' b58547040214410250af8f560ba284e442029a4d6c288b2c7c746eee4dbd5849 Codex-Sidebar-Sort-Mac-Apple-Silicon.dmg | shasum -a 256 -c
+          gh release download v0.3.0 -R "$GITHUB_REPOSITORY" -p Codex-Sidebar-Sort-Mac-Apple-Silicon.dmg
+          printf '%s  %s\n' 76b42dcb7f9c26080725071a2a9a332accce5b2e42c7e6e07d379424b05c2959 Codex-Sidebar-Sort-Mac-Apple-Silicon.dmg | shasum -a 256 -c
           curl --fail --location --retry 2 --max-time 240 https://persistent.oaistatic.com/codex-app-prod/Codex.dmg -o Codex.dmg
           hdiutil attach Codex.dmg -nobrowse -readonly -mountpoint official
           apps=(official/*.app)
