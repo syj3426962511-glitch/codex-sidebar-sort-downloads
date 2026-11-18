@@ -11,6 +11,10 @@ on:
         type: choice
         options: [all, win-x64, darwin-arm64, darwin-x64]
         default: all
+      upgrade_from:
+        description: Optional published Windows installer tag for upgrade testing
+        type: string
+        required: false
 permissions:
   contents: write
 jobs:
@@ -25,6 +29,7 @@ jobs:
     env:
       GH_TOKEN: ${{ github.token }}
       RELEASE_TAG: ${{ inputs.release_tag }}
+      UPGRADE_FROM_TAG: ${{ inputs.upgrade_from }}
     steps:
       - uses: actions/checkout@v4
       - name: Fetch the free companion payload from the staging release
@@ -104,7 +109,17 @@ jobs:
       - name: Exercise the final Windows install, upgrade and uninstall
         if: runner.os == 'Windows'
         shell: powershell
-        run: ./installers/cloud-windows.ps1
+        run: |
+          $ErrorActionPreference='Stop'
+          $options=@{}
+          if($env:UPGRADE_FROM_TAG){
+            if($env:UPGRADE_FROM_TAG -notmatch '^v\d+\.\d+\.\d+$'){throw 'Use a published stable Windows installer tag.'}
+            $previous=Join-Path $env:RUNNER_TEMP 'previous-sort-installer'
+            gh release download $env:UPGRADE_FROM_TAG -R $env:GITHUB_REPOSITORY -p 'Codex-Sidebar-Sort-Windows-x64-Setup.exe' -D $previous
+            if($LASTEXITCODE -ne 0){throw 'Could not download the published Windows installer for the upgrade test.'}
+            $options.PreviousInstaller=Join-Path $previous 'Codex-Sidebar-Sort-Windows-x64-Setup.exe'
+          }
+          ./installers/cloud-windows.ps1 @options
       - name: Exercise the final Mac GUI install, upgrade and uninstall
         if: runner.os == 'macOS'
         shell: bash

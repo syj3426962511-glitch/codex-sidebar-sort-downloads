@@ -11,6 +11,7 @@ from zipfile import ZipFile
 
 TARGETS = ("win-x64", "darwin-arm64", "darwin-x64")
 INSTALLER_VERSION = "0.3.0-setup.2"
+WINDOWS_INSTALLER_VERSION = "0.3.1-setup.1"
 
 
 def build(target, archive, output, manifest):
@@ -72,7 +73,8 @@ def build(target, archive, output, manifest):
         product = output / ("Codex-Sidebar-Sort-Mac-" + ("Apple-Silicon" if target.endswith("arm64") else "Intel") + ".dmg")
         subprocess.run(["/usr/bin/hdiutil", "create", "-volname", "Codex Sidebar Sort", "-srcfolder", str(app_stage), "-format", "UDZO", str(product)], check=True)
     result = {
-        "installerVersion": INSTALLER_VERSION, "companionVersion": runtime_version,
+        "installerVersion": WINDOWS_INSTALLER_VERSION if target == "win-x64" else INSTALLER_VERSION,
+        "companionVersion": runtime_version,
         "target": target, "file": product.name, "bytes": product.stat().st_size,
         "sha256": hashlib.sha256(product.read_bytes()).hexdigest(),
         "sourcePackageSha256": digest, "bundledNode": True, "paidSkillIncluded": False,

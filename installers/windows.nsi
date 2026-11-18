@@ -10,6 +10,7 @@ Unicode true
   !define OUTPUT "Codex-Sidebar-Sort-Windows-x64-Setup.exe"
 !endif
 !define PRODUCT_KEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\CodexSidebarSort"
+!define INSTALLER_VERSION "0.3.1-setup.1"
 Name "Codex Sidebar Sort"
 OutFile "${OUTPUT}"
 InstallDir "$LOCALAPPDATA\Programs\Codex Sidebar Sort"
@@ -17,10 +18,10 @@ InstallDirRegKey HKCU "${PRODUCT_KEY}" "InstallLocation"
 RequestExecutionLevel user
 SetCompressor /SOLID lzma
 SetFont "Times New Roman" 11
-VIProductVersion "0.3.0.5"
+VIProductVersion "0.3.1.1"
 VIAddVersionKey /LANG=1033 "ProductName" "Codex Sidebar Sort"
 VIAddVersionKey /LANG=1033 "FileDescription" "Offline desktop companion installer"
-VIAddVersionKey /LANG=1033 "FileVersion" "0.3.0-setup.2"
+VIAddVersionKey /LANG=1033 "FileVersion" "${INSTALLER_VERSION}"
 VIAddVersionKey /LANG=1033 "LegalCopyright" "MIT licensed community companion"
 Var ExistingInstall
 !define MUI_ABORTWARNING
@@ -93,7 +94,7 @@ Section "Desktop companion"
   ${EndIf}
   WriteUninstaller "$INSTDIR\Uninstall.exe"
   WriteRegStr HKCU "${PRODUCT_KEY}" "DisplayName" "Codex Sidebar Sort"
-  WriteRegStr HKCU "${PRODUCT_KEY}" "DisplayVersion" "0.3.0-setup.2"
+  WriteRegStr HKCU "${PRODUCT_KEY}" "DisplayVersion" "${INSTALLER_VERSION}"
   WriteRegStr HKCU "${PRODUCT_KEY}" "Publisher" "Codex Sidebar Sort community"
   WriteRegStr HKCU "${PRODUCT_KEY}" "InstallLocation" "$INSTDIR"
   WriteRegStr HKCU "${PRODUCT_KEY}" "UninstallString" '$\"$INSTDIR\Uninstall.exe$\"'

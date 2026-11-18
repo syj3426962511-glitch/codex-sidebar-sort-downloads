@@ -1,4 +1,4 @@
-param([switch]$PreviewOnly)
+param([switch]$PreviewOnly,[string]$PreviousInstaller)
 $ErrorActionPreference='Stop'
 if($env:GITHUB_ACTIONS -ne 'true'){throw 'Use an independent cloud Windows desktop.'}
 $output=Join-Path $PWD 'dist'
@@ -29,11 +29,14 @@ foreach($name in @('ChatGPT.lnk','Codex.lnk')){
   $shortcut=Join-Path ([Environment]::GetFolderPath('Desktop')) $name
   if(Test-Path -LiteralPath $shortcut){$originalShortcut=Get-FileHash -LiteralPath $shortcut;break}
 }
-$run=Start-Process -FilePath $installer -ArgumentList @('/S',('/D='+$root)) -PassThru -Wait
+$initialInstaller=if($PreviousInstaller){$PreviousInstaller}else{$installer}
+$run=Start-Process -FilePath $initialInstaller -ArgumentList @('/S',('/D='+$root)) -WindowStyle Hidden -PassThru -Wait
 if($run.ExitCode -ne 0){throw "The final installer failed with exit code $($run.ExitCode)."}
 $manifest=Get-Content -LiteralPath (Join-Path $root 'installer-manifest.json') -Raw|ConvertFrom-Json
 $buildReceipt=Get-Content -LiteralPath (Join-Path $output 'win-x64-installer.json') -Raw|ConvertFrom-Json
-if($manifest.companionVersion -ne $buildReceipt.companionVersion -or $manifest.installerVersion -ne $buildReceipt.installerVersion){throw 'Installed version differs from its build receipt.'}
+if(-not $PreviousInstaller -and ($manifest.companionVersion -ne $buildReceipt.companionVersion -or $manifest.installerVersion -ne $buildReceipt.installerVersion)){throw 'Installed version differs from its build receipt.'}
+$initialVersion=$manifest.companionVersion
+if($PreviousInstaller -and $initialVersion -eq $buildReceipt.companionVersion){throw 'The existing installer did not provide an older release.'}
 $config=Get-Content -LiteralPath (Join-Path $root 'config.json') -Raw|ConvertFrom-Json
 if(-not $config.nodePath.StartsWith($root+'\')){throw 'The installation depends on an external Node runtime.'}
 & $config.nodePath --version
@@ -46,14 +49,17 @@ if(-not $mcp.Contains('mcp_servers.codex_sidebar_sort') -or -not $mcp.Contains('
 Set-Content -LiteralPath (Join-Path $root 'user-note.txt') -Value 'Unrelated user file must survive uninstall.'
 $config|Add-Member -NotePropertyName installerAcceptanceMarker -NotePropertyValue 'preserve-on-upgrade'
 $config|ConvertTo-Json -Depth 20|Set-Content -LiteralPath (Join-Path $root 'config.json') -Encoding UTF8
-$run=Start-Process -FilePath $installer -ArgumentList @('/S',('/D='+$root)) -PassThru -Wait
+$run=Start-Process -FilePath $installer -ArgumentList @('/S',('/D='+$root)) -WindowStyle Hidden -PassThru -Wait
 if($run.ExitCode -ne 0){throw 'The final installer upgrade failed.'}
+$manifest=Get-Content -LiteralPath (Join-Path $root 'installer-manifest.json') -Raw|ConvertFrom-Json
+if($manifest.companionVersion -ne $buildReceipt.companionVersion -or $manifest.installerVersion -ne $buildReceipt.installerVersion){throw 'The upgrade did not install the intended version.'}
 $config=Get-Content -LiteralPath (Join-Path $root 'config.json') -Raw|ConvertFrom-Json
 if($config.installerAcceptanceMarker -ne 'preserve-on-upgrade'){throw 'The upgrade lost installed configuration.'}
 Save-Screenshot '02-windows-installed-desktop.png'
 $runs=@()
 $smokeError=$null
 $ownedExe=$null
+$manualStart=$null
 try{
   . (Join-Path $root 'scripts\Common.ps1')
   $package=Get-CodexPackage
@@ -81,11 +87,52 @@ try{
     $remaining=@(Get-CimInstance Win32_Process -Filter "Name='$processName'"|Where-Object {$_.ExecutablePath -eq $ownedExe -and $_.CommandLine -notmatch '--type='})
     if($remaining.Count){throw 'The companion reopened the deliberately closed desktop.'}
   }
+  $startLink=Join-Path ([Environment]::GetFolderPath('Programs')) 'Codex Sidebar Sort\Open Codex with sorting.lnk'
+  if(!(Test-Path -LiteralPath $startLink -PathType Leaf)){throw 'The Start menu shortcut was not created.'}
+  $configPath=Join-Path $root 'config.json'
+  $configBefore=[IO.File]::ReadAllBytes($configPath)
+  Stop-ScheduledTask -TaskName $startup.taskName
+  try{
+    $config.restartExisting=$false
+    $config|ConvertTo-Json -Depth 20|Set-Content -LiteralPath $configPath -Encoding UTF8
+    Start-Process -FilePath (Join-Path $env:SystemRoot 'explorer.exe') -ArgumentList ('shell:AppsFolder\'+$package.Aumid) -WindowStyle Hidden
+    $until=(Get-Date).AddSeconds(45)
+    do{
+      Start-Sleep -Seconds 1
+      $normal=@(Get-CimInstance Win32_Process -Filter "Name='$processName'"|Where-Object {$_.ExecutablePath -eq $ownedExe -and $_.CommandLine -notmatch '--type='})
+      if($normal.Count -eq 1){break}
+    }while((Get-Date) -lt $until)
+    if($normal.Count -ne 1 -or $normal[0].CommandLine -match '--remote-debugging-port='){throw 'The ordinary client did not open before the manual restart test.'}
+    $oldProcessId=[int]$normal[0].ProcessId
+    $started=(Get-Date).ToUniversalTime()
+    Start-Process -FilePath $startLink -WindowStyle Hidden
+    $until=(Get-Date).AddSeconds(140)
+    do{
+      Start-Sleep -Seconds 1
+      try{
+        $watch=Get-Content -LiteralPath (Join-Path $root 'watcher-state.json') -Raw|ConvertFrom-Json
+        $state=Get-Content -LiteralPath (Join-Path $root 'state.json') -Raw|ConvertFrom-Json
+      }catch{continue}
+      if($watch.state -ne 'ready' -or [datetime]$watch.time -le $started -or $watch.appPid -eq $oldProcessId -or $state.state -ne 'complete' -or $state.processId -ne $watch.appPid){continue}
+      $new=Get-CimInstance Win32_Process -Filter "ProcessId=$([int]$watch.appPid)"
+      if($new.ExecutablePath -eq $ownedExe -and !(Get-Process -Id $oldProcessId -ErrorAction SilentlyContinue)){
+        $manualStart=@{passed=$true;previousProcess=$oldProcessId;appPid=$watch.appPid;build=$watch.build;restartFlagRequired=$true}
+        break
+      }
+    }while((Get-Date) -lt $until)
+    if(!$manualStart){throw 'The actual Start menu shortcut did not complete a verified restart.'}
+    Save-Screenshot '04-codex-start-menu-restart.png'
+    Stop-Process -Id $manualStart.appPid
+    Wait-Process -Id $manualStart.appPid -Timeout 12 -ErrorAction SilentlyContinue
+  }finally{
+    [IO.File]::WriteAllBytes($configPath,$configBefore)
+    Start-ScheduledTask -TaskName $startup.taskName
+  }
 }catch{
   $smokeError=$_.Exception.Message
   if($ownedExe){Get-CimInstance Win32_Process -Filter "Name='$processName'"|Where-Object {$_.ExecutablePath -eq $ownedExe -and $_.CommandLine -notmatch '--type='}|ForEach-Object {Stop-Process -Id $_.ProcessId -ErrorAction SilentlyContinue}}
 }
-$smoke=@{passed=$runs.Count -eq 2 -and -not $smokeError;authenticated=$false;cycles=$runs;error=$smokeError}
+$smoke=@{passed=$runs.Count -eq 2 -and $manualStart.passed -and -not $smokeError;authenticated=$false;cycles=$runs;manualStart=$manualStart;error=$smokeError}
 $smoke|ConvertTo-Json -Depth 6|Set-Content -LiteralPath (Join-Path $output 'desktop-smoke.json') -Encoding UTF8
 $uninstaller=Join-Path $root 'Uninstall.exe'
 $remove=Start-Process -FilePath $uninstaller -ArgumentList '/S' -PassThru -Wait
@@ -102,5 +149,6 @@ if($originalShortcut -and (Get-FileHash -LiteralPath $originalShortcut.Path).Has
 $receipt=Get-Content -LiteralPath (Join-Path $output 'win-x64-installer.json') -Raw|ConvertFrom-Json
 $receipt.nativeInstallerLifecycle='passed'
 $receipt|Add-Member -NotePropertyName checks -NotePropertyValue @('normal installer entry','custom folder with spaces','bundled Node execution','startup task running','automatic MCP configuration','unrelated MCP preserved','upgrade configuration retained','normal uninstall entry','startup removed','MCP removed','unrelated user file retained','owned shortcut restored')
+$receipt|Add-Member -NotePropertyName initialCompanionVersion -NotePropertyValue $initialVersion
 $receipt|ConvertTo-Json -Depth 6|Set-Content -LiteralPath (Join-Path $output 'win-x64-installer.json') -Encoding UTF8
 Write-Output ($receipt|ConvertTo-Json -Depth 6)

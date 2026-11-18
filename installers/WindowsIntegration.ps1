@@ -63,11 +63,20 @@ if(Test-Path -LiteralPath (Join-Path $root 'startup.json')){Stop-OwnedSortingPro
   if($task.State -ne 'Running'){throw 'The startup service is not running.'}
   $files=@('config.json','shortcut.json','shortcut.original.lnk','Codex.ico','Start-Sorting.cmd','MCP-connection.toml','mcp-registration.json')
   $version=(Get-Content -LiteralPath (Join-Path $root 'runtime\package.json') -Raw|ConvertFrom-Json).version
-  @{product='Codex Sidebar Sort';root=$root;installerVersion='0.3.0-setup.2';companionVersion=$version;files=$files;time=(Get-Date).ToString('o')}|ConvertTo-Json -Depth 5|Set-Content -LiteralPath $marker -Encoding UTF8
+  @{product='Codex Sidebar Sort';root=$root;installerVersion='0.3.1-setup.1';companionVersion=$version;files=$files;time=(Get-Date).ToString('o')}|ConvertTo-Json -Depth 5|Set-Content -LiteralPath $marker -Encoding UTF8
   @'
 Set shell = CreateObject("WScript.Shell")
 Set files = CreateObject("Scripting.FileSystemObject")
 folder = files.GetParentFolderName(WScript.ScriptFullName)
-shell.Run "powershell.exe -NoProfile -NonInteractive -ExecutionPolicy Bypass -WindowStyle Hidden -File """ & folder & "\scripts\Launch.ps1"" -RestartExisting", 0, False
+windows = shell.ExpandEnvironmentStrings("%SystemRoot%")
+powershell = windows & "\System32\WindowsPowerShell\v1.0\powershell.exe"
+native = windows & "\Sysnative\WindowsPowerShell\v1.0\powershell.exe"
+If files.FileExists(native) Then powershell = native
+quote = Chr(34)
+command = quote & powershell & quote & " -NoProfile -NonInteractive -ExecutionPolicy Bypass -WindowStyle Hidden -File " & quote & folder & "\scripts\Launch.ps1" & quote & " -RestartExisting"
+result = shell.Run(command, 0, True)
+If result <> 0 Then
+  MsgBox "Sorting did not start. See Compatibility.html or state.json in:" & vbCrLf & folder, vbExclamation, "Codex Sidebar Sort"
+End If
 '@|Set-Content -LiteralPath (Join-Path $root 'Open Codex Sorting.vbs') -Encoding ASCII
   Write-Output 'Installation complete. The bundled runtime and startup service are configured.'
