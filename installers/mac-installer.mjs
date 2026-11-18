@@ -57,7 +57,7 @@ async function main(){
     const connection=register({root,node:path.join(root,'node/node')});
     const owned=['runtime','mac.mjs','config.json','node','installer','Uninstall Codex Sidebar Sort.app','mcp-registration.json'];
     const version=read(path.join(root,'runtime/package.json')).version;
-    fs.writeFileSync(path.join(root,'installer-manifest.json'),JSON.stringify({product:'Codex Sidebar Sort',root,installerVersion:'0.3.0-setup.2',companionVersion:version,files:owned,time:new Date().toISOString()},null,2)+'\n');
+    fs.writeFileSync(path.join(root,'installer-manifest.json'),JSON.stringify({product:'Codex Sidebar Sort',root,installerVersion:'0.3.1-setup.1',companionVersion:version,files:owned,time:new Date().toISOString()},null,2)+'\n');
     fs.mkdirSync(path.dirname(pointer),{recursive:true});
     fs.writeFileSync(pointer,JSON.stringify({root}));
     console.log(connection.message);
