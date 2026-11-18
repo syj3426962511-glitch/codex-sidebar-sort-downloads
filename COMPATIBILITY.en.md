@@ -2,11 +2,12 @@
 
 ## Current release
 
-Companion 0.3.0 and installer 0.3.0-setup.2 have the following cloud results.
+The latest installers are Windows companion 0.3.1 and Mac companion 0.3.0.
 
 | Official client | Native installer lifecycle | Original app launch with the companion | Signed-in sorting with this release |
 | --- | --- | --- | --- |
-| Windows x64 26.1111.2228.0 | Passed | Two signed-out starts passed | Pending |
+| Windows x64 26.1111.2228.0 | In-place update to 0.3.1 passed, with configuration retained | Two signed-out starts and Start menu restart passed | Pending |
+| Windows client displaying 26.1117.12345 | Setup present on a reported installation | Sorting startup warning, diagnosis pending | Pending |
 | Apple Silicon Mac 26.1111.71025 | Passed | Two signed-out starts passed | Pending |
 | Intel Mac 26.1111.71025 | Passed | Two signed-out starts passed | Pending |
 
@@ -15,8 +16,8 @@ interface variant matches 13 interface modules and 25 sidebar hook positions.
 Every tested start reached the candidate renderer readiness marker and the
 desktop stayed closed after exit.
 
-[Current cloud run](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/actions/runs/44224786029) |
-[Current release](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/releases/tag/v0.3.0)
+[Windows 0.3.1 cloud run](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/actions/runs/44310857218) |
+[macOS 0.3.0 cloud run](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/actions/runs/44224786029)
 
 ## Historical acceptance
 

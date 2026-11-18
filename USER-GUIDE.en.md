@@ -2,12 +2,12 @@
 
 ## Current release
 
-This guide accompanies desktop companion 0.3.0 and Skill 0.3.1. Menus,
-diagnostics, installation documents, examples and test fixtures use English.
+This guide covers desktop companion 0.3.1 for Windows x64 and 0.3.0 for Mac
+Apple Silicon and Intel. Menus, diagnostics and installation documents use English.
 Name sorting uses numeric-aware, case-insensitive English comparison.
 
-This release adds the macOS ChatGPT 26.1111.71025 interface, saves each rule in
-one write and preserves existing MCP settings during installation and removal.
+Windows 0.3.1 fixes the Start menu launcher's restart behavior and reports
+startup failures. Mac 0.3.0 adds the ChatGPT 26.1111.71025 interface.
 The published compatibility table lists the exact desktop builds used for
 installer, startup and signed-in testing. Earlier 0.2.0 signed-in evidence
 describes that runtime.
@@ -58,17 +58,18 @@ agent-specific checks appear in the release report as they are completed.
 
 ## Download
 
-Choose the self-contained native installer matching your computer. These
-installers package the free 0.3.0 companion and its complete Node.js runtime.
+Choose the self-contained installer for your operating system and processor.
+Each includes the free companion and its Node.js runtime.
 
 - `Codex-Sidebar-Sort-Windows-x64-Setup.exe`
 - `Codex-Sidebar-Sort-Mac-Apple-Silicon.dmg`
 - `Codex-Sidebar-Sort-Mac-Intel.dmg`
 
-[Windows x64 EXE](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/releases/download/v0.3.1/Codex-Sidebar-Sort-Windows-x64-Setup.exe)
-[Mac Apple Silicon DMG](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/releases/download/v0.3.0/Codex-Sidebar-Sort-Mac-Apple-Silicon.dmg)
-[Mac Intel DMG](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/releases/download/v0.3.0/Codex-Sidebar-Sort-Mac-Intel.dmg)
-[Release notes and package checks](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/releases/tag/v0.3.0)
+[Windows x64 0.3.1 EXE](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/releases/download/v0.3.1/Codex-Sidebar-Sort-Windows-x64-Setup.exe)
+[Mac Apple Silicon 0.3.0 DMG](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/releases/download/v0.3.0/Codex-Sidebar-Sort-Mac-Apple-Silicon.dmg)
+[Mac Intel 0.3.0 DMG](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/releases/download/v0.3.0/Codex-Sidebar-Sort-Mac-Intel.dmg)
+
+Read the release notes for your installer. [Windows 0.3.1](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/releases/tag/v0.3.1) · [macOS 0.3.0](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/releases/tag/v0.3.0)
 
 Use the compatibility information on the release page to check your desktop
 build before installing. The source repository is maintained privately. The
@@ -95,8 +96,9 @@ connections. Removal uses Windows Installed apps or the installed Mac uninstalle
 ## Windows installation
 
 1. Open `Codex-Sidebar-Sort-Windows-x64-Setup.exe`.
-2. Choose a dedicated installation folder, then select Install. Upgrades use
-   the existing installation's location and preserve its configuration.
+2. Choose a dedicated folder for a first installation. When upgrading Codex
+   Sidebar Sort under the same Windows account, run Setup over the existing
+   installation. Setup selects its existing folder and preserves its configuration.
 3. Setup discovers the registered desktop app and configures its shortcut,
    current-user startup service and local Codex MCP connection.
 4. Save work, fully quit Codex and reopen it. An explicit restart option is
@@ -107,6 +109,8 @@ Normal starts are detected using the registered app's actual executable path.
 The default new installation is `Programs\Codex Sidebar Sort` inside your
 local application-data folder. An existing portable installation is recognized
 and upgraded at its current location. Retain the exact path shown by Setup.
+The similarly named Codex Sidebar Sorter is a separate product with its own
+installation and startup service.
 
 Remove it from Windows Installed apps or the Start menu's Codex Sidebar Sort
 uninstall entry. The older portable ZIP remains available for advanced use.
@@ -249,6 +253,11 @@ restoring a backup.
 
 ### Version and startup diagnosis
 
+If Windows shows **Sorting did not start**, run the read-only diagnostics on
+the affected computer. The report identifies the installed desktop package,
+companion, startup service and most recent activation result.
+[Windows startup diagnostics](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/releases/download/v0.3.1/Codex-Sidebar-Sort-Diagnostics.cmd)
+
 Record the actual desktop version, companion version and operating-system
 architecture. Read `state.json`, `startup-state.json` and `watcher-state.json`
 from the companion installation folder when available. A healthy renderer
@@ -295,8 +304,9 @@ marker after exit and reopen. Signed-in sorting and settings retention use a
 separate test account. Automatic repair and recovery have isolated regression
 coverage. The published repair catalog is empty pending live acceptance.
 
-Current release downloads supply companion 0.3.0. Existing 0.2.0
-customers install this complete package once to receive its startup updater.
+Current downloads supply Windows companion 0.3.1 and Mac companion 0.3.0.
+Existing 0.2.0 customers install their platform package once to receive
+its startup updater.
 The accepted-adapter catalog currently contains zero repair packs. Node.js
 interpreter upgrades, in-session recovery, broader historical native acceptance
 and continuous official-build monitoring retain development work.
