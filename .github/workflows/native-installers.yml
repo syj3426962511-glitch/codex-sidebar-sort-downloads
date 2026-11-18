@@ -59,7 +59,12 @@ jobs:
         if: runner.os == 'macOS'
         shell: bash
         run: |
-          curl --fail --location --retry 2 --max-time 300 https://persistent.oaistatic.com/codex-app-prod/Codex.dmg -o "$RUNNER_TEMP/Codex.dmg"
+          if [[ "${{ matrix.target }}" == "darwin-x64" ]]; then
+            image=ChatGPT-latest-x64.dmg
+          else
+            image=Codex.dmg
+          fi
+          curl --fail --location --retry 2 --max-time 300 "https://persistent.oaistatic.com/codex-app-prod/$image" -o "$RUNNER_TEMP/Codex.dmg"
           mkdir -p "$RUNNER_TEMP/official-codex"
           hdiutil attach "$RUNNER_TEMP/Codex.dmg" -nobrowse -readonly -mountpoint "$RUNNER_TEMP/official-codex"
           python3 - <<'PY'
@@ -79,6 +84,8 @@ jobs:
               info = plistlib.load(file)
           executable = str(app / 'Contents/MacOS' / info['CFBundleExecutable'])
           architectures = subprocess.check_output(['/usr/bin/lipo', '-archs', executable], text=True).split()
+          if ('x86_64' if '${{ matrix.target }}' == 'darwin-x64' else 'arm64') not in architectures:
+              raise RuntimeError('The official Mac download does not match this runner architecture.')
           pathlib.Path('dist/official-client.json').write_text(json.dumps({'app':str(app), 'version':info.get('CFBundleShortVersionString'), 'executable':executable, 'architectures':architectures}))
           PY
           hdiutil detach "$RUNNER_TEMP/official-codex"

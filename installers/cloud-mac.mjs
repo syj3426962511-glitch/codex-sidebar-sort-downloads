@@ -57,6 +57,10 @@ async function smokeDesktop(){
     report.passed=true;
   }catch(error){
     report.error=error.message;
+    for(const name of ['compatibility-state.json','startup-state.json','watcher-state.json','state.json']){
+      try{report[name]=JSON.parse(fs.readFileSync(path.join(root,name),'utf8'));}catch{}
+    }
+    exec('/usr/sbin/screencapture',['-x',path.join(evidence,'04-codex-startup-diagnostic.png')]);
     for(const pid of roots())spawnSync('/bin/kill',['-TERM',String(pid)]);
   }
   return report;
