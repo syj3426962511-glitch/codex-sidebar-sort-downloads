@@ -32,6 +32,7 @@ foreach($name in @('ChatGPT.lnk','Codex.lnk')){
 $run=Start-Process -FilePath $installer -ArgumentList @('/S',('/D='+$root)) -PassThru -Wait
 if($run.ExitCode -ne 0){throw "The final installer failed with exit code $($run.ExitCode)."}
 $manifest=Get-Content -LiteralPath (Join-Path $root 'installer-manifest.json') -Raw|ConvertFrom-Json
+if($manifest.companionVersion -ne '0.3.0-rc.5' -or $manifest.installerVersion -ne '0.3.0-setup.2'){throw 'Installed version differs from the candidate.'}
 $config=Get-Content -LiteralPath (Join-Path $root 'config.json') -Raw|ConvertFrom-Json
 if(-not $config.nodePath.StartsWith($root+'\')){throw 'The installation depends on an external Node runtime.'}
 & $config.nodePath --version
@@ -49,6 +50,42 @@ if($run.ExitCode -ne 0){throw 'The final installer upgrade failed.'}
 $config=Get-Content -LiteralPath (Join-Path $root 'config.json') -Raw|ConvertFrom-Json
 if($config.installerAcceptanceMarker -ne 'preserve-on-upgrade'){throw 'The upgrade lost installed configuration.'}
 Save-Screenshot '02-windows-installed-desktop.png'
+$runs=@()
+$smokeError=$null
+$ownedExe=$null
+try{
+  . (Join-Path $root 'scripts\Common.ps1')
+  $package=Get-CodexPackage
+  $ownedExe=$package.Exe
+  $processName=[IO.Path]::GetFileName($ownedExe)
+  for($cycle=1;$cycle -le 2;$cycle++){
+    $started=(Get-Date).ToUniversalTime()
+    Start-Process -FilePath (Join-Path $env:SystemRoot 'explorer.exe') -ArgumentList ('shell:AppsFolder\'+$package.Aumid) -WindowStyle Hidden
+    $until=(Get-Date).AddSeconds(140)
+    $watcher=$null
+    do{
+      Start-Sleep -Seconds 2
+      try{$watcher=Get-Content -LiteralPath (Join-Path $root 'watcher-state.json') -Raw -ErrorAction Stop|ConvertFrom-Json}catch{continue}
+      if($watcher.state -eq 'ready' -and [datetime]$watcher.time -gt $started){
+        $proc=Get-CimInstance Win32_Process -Filter "ProcessId=$([int]$watcher.appPid)"
+        if($proc.ExecutablePath -eq $ownedExe){break}
+      }
+    }while((Get-Date) -lt $until)
+    if($watcher.state -ne 'ready' -or [datetime]$watcher.time -le $started -or $proc.ExecutablePath -ne $ownedExe){throw 'The official desktop did not report candidate renderer readiness on normal startup.'}
+    Save-Screenshot ("03-codex-normal-start-{0}.png" -f $cycle)
+    $runs+=@{cycle=$cycle;appPid=$watcher.appPid;build=$watcher.build;rendererReady=$true}
+    Stop-Process -Id $watcher.appPid
+    Wait-Process -Id $watcher.appPid -Timeout 12 -ErrorAction SilentlyContinue
+    Start-Sleep -Seconds 7
+    $remaining=@(Get-CimInstance Win32_Process -Filter "Name='$processName'"|Where-Object {$_.ExecutablePath -eq $ownedExe -and $_.CommandLine -notmatch '--type='})
+    if($remaining.Count){throw 'The companion reopened the deliberately closed desktop.'}
+  }
+}catch{
+  $smokeError=$_.Exception.Message
+  if($ownedExe){Get-CimInstance Win32_Process -Filter "Name='$processName'"|Where-Object {$_.ExecutablePath -eq $ownedExe -and $_.CommandLine -notmatch '--type='}|ForEach-Object {Stop-Process -Id $_.ProcessId -ErrorAction SilentlyContinue}}
+}
+$smoke=@{passed=$runs.Count -eq 2 -and -not $smokeError;authenticated=$false;cycles=$runs;error=$smokeError}
+$smoke|ConvertTo-Json -Depth 6|Set-Content -LiteralPath (Join-Path $output 'desktop-smoke.json') -Encoding UTF8
 $uninstaller=Join-Path $root 'Uninstall.exe'
 $remove=Start-Process -FilePath $uninstaller -ArgumentList '/S' -PassThru -Wait
 if($remove.ExitCode -ne 0){throw 'The uninstall entry failed.'}

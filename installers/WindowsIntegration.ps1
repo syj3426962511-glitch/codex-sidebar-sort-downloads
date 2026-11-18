@@ -10,10 +10,6 @@ $marker=Join-Path $root 'installer-manifest.json'
 $powershell=Join-Path $env:SystemRoot 'System32\WindowsPowerShell\v1.0\powershell.exe'
 
 function Stop-OwnedSortingProcesses {
-  if(Test-Path -LiteralPath (Join-Path $root 'startup.json')){
-    . (Join-Path $root 'scripts\Startup.ps1')
-    Disable-SortStartup $root
-  }
   if(Test-Path -LiteralPath (Join-Path $root 'config.json')){
     $config=Get-Content -LiteralPath (Join-Path $root 'config.json') -Raw|ConvertFrom-Json
     foreach($process in @(Get-CimInstance Win32_Process -Filter "Name='node.exe'")){
@@ -27,9 +23,9 @@ function Stop-OwnedSortingProcesses {
 if($Mode -eq 'Uninstall'){
   $owned=Get-Content -LiteralPath $marker -Raw|ConvertFrom-Json
   if($owned.product -ne 'Codex Sidebar Sort' -or $owned.root -ne $root){throw 'Installation ownership check failed.'}
-  Stop-OwnedSortingProcesses
   & $powershell -NoProfile -NonInteractive -ExecutionPolicy Bypass -File (Join-Path $root 'scripts\Restore.ps1') -InstallDirectory $root
   if($LASTEXITCODE -ne 0){throw 'The original desktop shortcut could not be restored. Files were retained.'}
+  Stop-OwnedSortingProcesses
   $config=Get-Content -LiteralPath (Join-Path $root 'config.json') -Raw|ConvertFrom-Json
   & $config.nodePath (Join-Path $root 'installer\mcp-registration.mjs') disconnect $root
   if($LASTEXITCODE -ne 0){throw 'The MCP connection could not be removed. Files were retained.'}
@@ -51,9 +47,7 @@ if(Test-Path -LiteralPath $root){
   $recognized=(Test-Path -LiteralPath (Join-Path $root 'shortcut.json')) -and (Test-Path -LiteralPath (Join-Path $root 'config.json'))
   if(-not $recognized){throw 'Choose a new dedicated installation folder. This folder contains unrelated files.'}
 }
-$previousStartup=Test-Path -LiteralPath (Join-Path $root 'startup.json')
-if($previousStartup){Stop-OwnedSortingProcesses}
-try{
+if(Test-Path -LiteralPath (Join-Path $root 'startup.json')){Stop-OwnedSortingProcesses}
   & $powershell -NoProfile -NonInteractive -ExecutionPolicy Bypass -File (Join-Path $PayloadRoot 'scripts\Setup.ps1') -InstallDirectory $root
   if($LASTEXITCODE -ne 0){throw 'Desktop sorting setup failed. See the installation details.'}
   $config=Get-Content -LiteralPath (Join-Path $root 'config.json') -Raw|ConvertFrom-Json
@@ -61,24 +55,19 @@ try{
   $integration=Join-Path $root 'installer'
   New-Item -ItemType Directory -Path $integration -Force|Out-Null
   foreach($file in Get-ChildItem -LiteralPath $PSScriptRoot -File){Copy-Item -LiteralPath $file.FullName -Destination (Join-Path $integration $file.Name) -Force}
-  & $config.nodePath (Join-Path $root 'installer\mcp-registration.mjs') connect $root $config.nodePath
+  $connection=& $config.nodePath (Join-Path $root 'installer\mcp-registration.mjs') connect $root $config.nodePath
   if($LASTEXITCODE -ne 0){throw 'Automatic MCP configuration failed.'}
+  Write-Output (($connection|ConvertFrom-Json).message)
   $startup=Get-Content -LiteralPath (Join-Path $root 'startup.json') -Raw|ConvertFrom-Json
   $task=Get-ScheduledTask -TaskName $startup.taskName
   if($task.State -ne 'Running'){throw 'The startup service is not running.'}
   $files=@('config.json','shortcut.json','shortcut.original.lnk','Codex.ico','Start-Sorting.cmd','MCP-connection.toml','mcp-registration.json')
-  @{product='Codex Sidebar Sort';root=$root;installerVersion='0.3.0-setup.1';companionVersion='0.3.0-rc.4';files=$files;time=(Get-Date).ToString('o')}|ConvertTo-Json -Depth 5|Set-Content -LiteralPath $marker -Encoding UTF8
+  $version=(Get-Content -LiteralPath (Join-Path $root 'runtime\package.json') -Raw|ConvertFrom-Json).version
+  @{product='Codex Sidebar Sort';root=$root;installerVersion='0.3.0-setup.2';companionVersion=$version;files=$files;time=(Get-Date).ToString('o')}|ConvertTo-Json -Depth 5|Set-Content -LiteralPath $marker -Encoding UTF8
   @'
 Set shell = CreateObject("WScript.Shell")
 Set files = CreateObject("Scripting.FileSystemObject")
 folder = files.GetParentFolderName(WScript.ScriptFullName)
 shell.Run "powershell.exe -NoProfile -NonInteractive -ExecutionPolicy Bypass -WindowStyle Hidden -File """ & folder & "\scripts\Launch.ps1"" -RestartExisting", 0, False
 '@|Set-Content -LiteralPath (Join-Path $root 'Open Codex Sorting.vbs') -Encoding ASCII
-  Write-Output 'Installation complete. Bundled runtime, startup service and local MCP connection are configured.'
-}catch{
-  if($previousStartup -and -not (Test-Path -LiteralPath (Join-Path $root 'startup.json'))){
-    . (Join-Path $root 'scripts\Startup.ps1')
-    Enable-SortStartup $root|Out-Null
-  }
-  throw
-}
+  Write-Output 'Installation complete. The bundled runtime and startup service are configured.'

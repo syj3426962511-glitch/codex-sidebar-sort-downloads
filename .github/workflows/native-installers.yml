@@ -22,18 +22,18 @@ jobs:
       GH_TOKEN: ${{ github.token }}
     steps:
       - uses: actions/checkout@v4
-      - name: Fetch the public free companion payload
+      - name: Fetch the free companion payload from the staging release
         shell: bash
         run: |
           mkdir -p "$RUNNER_TEMP/installer-payload"
-          gh release download v0.3.0-rc.4 --repo "$GITHUB_REPOSITORY" --pattern "codex-project-chat-sort-${{ matrix.target }}.zip" --dir "$RUNNER_TEMP/installer-payload"
+          gh release download v0.3.0-rc.5 --repo "$GITHUB_REPOSITORY" --pattern "codex-project-chat-sort-${{ matrix.target }}.zip" --pattern "desktop-packages.json" --dir "$RUNNER_TEMP/installer-payload"
       - name: Prepare the Windows installer compiler
         if: runner.os == 'Windows'
         shell: powershell
         run: choco install nsis --yes --no-progress
       - name: Compile the final native installer
         shell: bash
-        run: python3 installers/build.py --target "${{ matrix.target }}" --zip "$RUNNER_TEMP/installer-payload/codex-project-chat-sort-${{ matrix.target }}.zip" --out dist
+        run: python3 installers/build.py --target "${{ matrix.target }}" --zip "$RUNNER_TEMP/installer-payload/codex-project-chat-sort-${{ matrix.target }}.zip" --manifest "$RUNNER_TEMP/installer-payload/desktop-packages.json" --out dist
       - name: Capture the Windows installer window
         if: runner.os == 'Windows'
         shell: powershell
@@ -77,7 +77,9 @@ jobs:
               raise RuntimeError('Unexpected desktop signing team.')
           with (app / 'Contents/Info.plist').open('rb') as file:
               info = plistlib.load(file)
-          pathlib.Path('dist/official-client.json').write_text(json.dumps({'app':str(app), 'version':info.get('CFBundleShortVersionString')}))
+          executable = str(app / 'Contents/MacOS' / info['CFBundleExecutable'])
+          architectures = subprocess.check_output(['/usr/bin/lipo', '-archs', executable], text=True).split()
+          pathlib.Path('dist/official-client.json').write_text(json.dumps({'app':str(app), 'version':info.get('CFBundleShortVersionString'), 'executable':executable, 'architectures':architectures}))
           PY
           hdiutil detach "$RUNNER_TEMP/official-codex"
       - name: Exercise the final Windows install, upgrade and uninstall
@@ -88,13 +90,13 @@ jobs:
         if: runner.os == 'macOS'
         shell: bash
         run: node installers/cloud-mac.mjs
-      - name: Publish installers with passed lifecycle receipts
+      - name: Stage installers with passed lifecycle receipts
         shell: bash
         run: |
           if [[ "$RUNNER_OS" == "Windows" ]]; then
-            gh release upload v0.3.0-rc.4 dist/Codex-Sidebar-Sort-Windows-x64-Setup.exe dist/win-x64-installer.json --repo "$GITHUB_REPOSITORY" --clobber
+            gh release upload v0.3.0-rc.5 dist/Codex-Sidebar-Sort-Windows-x64-Setup.exe dist/win-x64-installer.json --repo "$GITHUB_REPOSITORY" --clobber
           else
-            gh release upload v0.3.0-rc.4 dist/Codex-Sidebar-Sort-Mac-*.dmg "dist/${{ matrix.target }}-installer.json" --repo "$GITHUB_REPOSITORY" --clobber
+            gh release upload v0.3.0-rc.5 dist/Codex-Sidebar-Sort-Mac-*.dmg "dist/${{ matrix.target }}-installer.json" --repo "$GITHUB_REPOSITORY" --clobber
           fi
       - name: Retain native screenshots and diagnostics
         if: always()
@@ -107,3 +109,5 @@ jobs:
             dist/evidence/
             dist/*-installer.json
             dist/official-client*
+            dist/desktop-smoke.json
+            dist/stage-${{ matrix.target }}/codex-project-chat-sort/INSTALL.md

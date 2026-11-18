@@ -46,27 +46,18 @@ async function main(){
     const node=path.join(payload,'assets/node/node');
     const args=[script,'install','--root',root];
     if(value('--app'))args.push('--app',value('--app'));
-    if(fs.existsSync(path.join(root,'config.json'))){
-      run(path.join(root,'node/node'),[path.join(root,'mac.mjs'),'uninstall','--root',root]);
-      stopOwnedProcesses(root);
-    }
-    try{process.stdout.write(run(node,args));}
-    catch(error){
-      if(fs.existsSync(path.join(root,'config.json'))){
-        try{run(path.join(root,'node/node'),[path.join(root,'mac.mjs'),'follow-startup','--root',root]);}catch{}
-      }
-      throw error;
-    }
+    process.stdout.write(run(node,args));
     const integration=path.join(root,'installer');
     fs.mkdirSync(integration,{recursive:true});
-    for(const name of ['mac-installer.mjs','mcp-registration.mjs','INSTALL.en.md'])fs.copyFileSync(path.join(here,name),path.join(integration,name));
+    for(const name of ['mac-installer.mjs','mcp-registration.mjs','smol-toml.cjs','smol-toml.LICENSE.txt','INSTALL.en.md'])fs.copyFileSync(path.join(here,name),path.join(integration,name));
     const uninstaller=path.join(root,'Uninstall Codex Sidebar Sort.app');
     if(fs.existsSync(uninstaller))fs.rmSync(uninstaller,{recursive:true});
     fs.cpSync(path.join(here,'Uninstaller.app'),uninstaller,{recursive:true});
     fs.writeFileSync(path.join(uninstaller,'Contents/Resources/installation.json'),JSON.stringify({root}));
     const connection=register({root,node:path.join(root,'node/node')});
     const owned=['runtime','mac.mjs','config.json','node','installer','Uninstall Codex Sidebar Sort.app','mcp-registration.json'];
-    fs.writeFileSync(path.join(root,'installer-manifest.json'),JSON.stringify({product:'Codex Sidebar Sort',root,installerVersion:'0.3.0-setup.1',companionVersion:'0.3.0-rc.4',files:owned,time:new Date().toISOString()},null,2)+'\n');
+    const version=read(path.join(root,'runtime/package.json')).version;
+    fs.writeFileSync(path.join(root,'installer-manifest.json'),JSON.stringify({product:'Codex Sidebar Sort',root,installerVersion:'0.3.0-setup.2',companionVersion:version,files:owned,time:new Date().toISOString()},null,2)+'\n');
     fs.mkdirSync(path.dirname(pointer),{recursive:true});
     fs.writeFileSync(pointer,JSON.stringify({root}));
     console.log(connection.message);

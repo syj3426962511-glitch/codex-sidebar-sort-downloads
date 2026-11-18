@@ -17,10 +17,10 @@ InstallDirRegKey HKCU "${PRODUCT_KEY}" "InstallLocation"
 RequestExecutionLevel user
 SetCompressor /SOLID lzma
 SetFont "Times New Roman" 11
-VIProductVersion "0.3.0.4"
+VIProductVersion "0.3.0.5"
 VIAddVersionKey /LANG=1033 "ProductName" "Codex Sidebar Sort"
 VIAddVersionKey /LANG=1033 "FileDescription" "Offline desktop companion installer"
-VIAddVersionKey /LANG=1033 "FileVersion" "0.3.0-setup.1"
+VIAddVersionKey /LANG=1033 "FileVersion" "0.3.0-setup.2"
 VIAddVersionKey /LANG=1033 "LegalCopyright" "MIT licensed community companion"
 Var ExistingInstall
 !define MUI_ABORTWARNING
@@ -29,7 +29,7 @@ Var ExistingInstall
 !define MUI_FINISHPAGE_RUN_FUNCTION StartSorting
 !define MUI_FINISHPAGE_RUN_TEXT "Open Codex with sorting (restarts any running Codex)"
 !define MUI_FINISHPAGE_RUN_NOTCHECKED
-!define MUI_FINISHPAGE_TEXT "Installation completed.$\r$\n$\r$\nOpen Codex normally to use sorting. The startup service follows the registered application and checks for published compatible repairs.$\r$\n$\r$\nYour local MCP connection is configured. Load the purchased Agensi Skill when using sorting from chat."
+!define MUI_FINISHPAGE_TEXT "Installation completed.$\r$\n$\r$\nOpen Codex to use sorting. The startup service checks for compatible repairs.$\r$\n$\r$\nFor chat commands, load the Agensi Skill. If setup saved MCP-connection.toml, open the guide to complete the local connection."
 !insertmacro MUI_PAGE_WELCOME
 !insertmacro MUI_PAGE_LICENSE "${PAYLOAD}\assets\runtime\LICENSE"
 !insertmacro MUI_PAGE_DIRECTORY
@@ -81,6 +81,8 @@ Section "Desktop companion"
   SetOutPath "$PLUGINSDIR\integration"
   File "WindowsIntegration.ps1"
   File "mcp-registration.mjs"
+  File "smol-toml.cjs"
+  File "smol-toml.LICENSE.txt"
   File "INSTALL.en.md"
   nsExec::ExecToLog /TIMEOUT=600000 '"$WINDIR\Sysnative\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -NonInteractive -ExecutionPolicy Bypass -File "$PLUGINSDIR\integration\WindowsIntegration.ps1" -Mode Install -ProductDirectory "$INSTDIR" -PayloadRoot "$PLUGINSDIR\payload\codex-project-chat-sort"'
   Pop $0
@@ -91,7 +93,7 @@ Section "Desktop companion"
   ${EndIf}
   WriteUninstaller "$INSTDIR\Uninstall.exe"
   WriteRegStr HKCU "${PRODUCT_KEY}" "DisplayName" "Codex Sidebar Sort"
-  WriteRegStr HKCU "${PRODUCT_KEY}" "DisplayVersion" "0.3.0-setup.1"
+  WriteRegStr HKCU "${PRODUCT_KEY}" "DisplayVersion" "0.3.0-setup.2"
   WriteRegStr HKCU "${PRODUCT_KEY}" "Publisher" "Codex Sidebar Sort community"
   WriteRegStr HKCU "${PRODUCT_KEY}" "InstallLocation" "$INSTDIR"
   WriteRegStr HKCU "${PRODUCT_KEY}" "UninstallString" '$\"$INSTDIR\Uninstall.exe$\"'
