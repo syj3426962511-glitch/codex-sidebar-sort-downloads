@@ -10,11 +10,11 @@ Open the native installer, choose a dedicated installation folder and Install.
 Node.js, companion libraries, startup following and the local Codex MCP
 connection are included. No separate runtime or terminal setup is required.
 
-| Computer | Self-contained installer | Size |
-| --- | --- | --- |
-| Windows x64 | [EXE setup wizard](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/releases/download/v0.3.1/Codex-Sidebar-Sort-Windows-x64-Setup.exe) | 21.57 MiB |
-| Mac Apple Silicon | [DMG installer](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/releases/download/v0.3.0/Codex-Sidebar-Sort-Mac-Apple-Silicon.dmg) | 40.95 MiB |
-| Mac Intel | [DMG installer](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/releases/download/v0.3.0/Codex-Sidebar-Sort-Mac-Intel.dmg) | 42.41 MiB |
+| Computer | Self-contained 0.3.1 installer |
+| --- | --- |
+| Windows x64 | [EXE setup wizard](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/releases/download/v0.3.1/Codex-Sidebar-Sort-Windows-x64-Setup.exe) |
+| Mac Apple Silicon | [DMG installer](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/releases/download/v0.3.1/Codex-Sidebar-Sort-Mac-Apple-Silicon.dmg) |
+| Mac Intel | [DMG installer](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/releases/download/v0.3.1/Codex-Sidebar-Sort-Mac-Intel.dmg) |
 
 Save work, close Codex and reopen after installation. The installer offers an
 explicit restart action. Your computer supplies its own compatible Codex Desktop
@@ -22,14 +22,15 @@ installation and sign-in. You can copy the EXE or DMG directly to another comput
 
 [English setup guide](installers/INSTALL.en.md) | [Complete buyer guide](USER-GUIDE.en.md)
 
-**Windows update 0.3.1** fixes the Start menu launcher and reports startup failures. The published 0.3.0 installer was upgraded and the installed shortcut was exercised on an independent Windows runner. [Windows release notes](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/releases/tag/v0.3.1).
+**Version 0.3.1** ships on Windows x64 and both Mac architectures. The Windows update fixes the Start menu launcher and reports startup failures. Both Mac packages were assembled for this release. [Release notes](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/releases/tag/v0.3.1)
 
-## Verified installer lifecycle
+## Installer evidence
 
 Installer 0.3.0-setup.2 packages companion 0.3.0. The final binaries passed
 34 install, upgrade and uninstall checks and six original-entry, signed-out
 desktop launches across Windows x64, Apple Silicon Mac and Intel Mac.
-The Mac release recognizes ChatGPT 26.1111.71025 on both processor types.
+The 0.3.1 Mac release carries the 26.1111.71025 interface forward. Its new
+disk images have separate build receipts and await native lifecycle acceptance.
 [Tested client builds and validation scope](installers/VALIDATION.en.md).
 
 Signed-in sorting and live repair delivery for 0.3.0 remain pending verification.

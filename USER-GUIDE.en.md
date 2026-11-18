@@ -2,12 +2,13 @@
 
 ## Current release
 
-This guide covers desktop companion 0.3.1 for Windows x64 and 0.3.0 for Mac
-Apple Silicon and Intel. Menus, diagnostics and installation documents use English.
+This guide covers desktop companion 0.3.1 for Windows x64, Apple Silicon Mac
+and Intel Mac. Menus, diagnostics and installation documents use English.
 Name sorting uses numeric-aware, case-insensitive English comparison.
 
 Windows 0.3.1 fixes the Start menu launcher's restart behavior and reports
-startup failures. Mac 0.3.0 adds the ChatGPT 26.1111.71025 interface.
+startup failures. Mac 0.3.1 carries the 26.1111.71025 interface from 0.3.0.
+The previous Mac lifecycle test applies to 0.3.0.
 The published compatibility table lists the exact desktop builds used for
 installer, startup and signed-in testing. Earlier 0.2.0 signed-in evidence
 describes that runtime.
@@ -66,10 +67,10 @@ Each includes the free companion and its Node.js runtime.
 - `Codex-Sidebar-Sort-Mac-Intel.dmg`
 
 [Windows x64 0.3.1 EXE](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/releases/download/v0.3.1/Codex-Sidebar-Sort-Windows-x64-Setup.exe)
-[Mac Apple Silicon 0.3.0 DMG](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/releases/download/v0.3.0/Codex-Sidebar-Sort-Mac-Apple-Silicon.dmg)
-[Mac Intel 0.3.0 DMG](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/releases/download/v0.3.0/Codex-Sidebar-Sort-Mac-Intel.dmg)
+[Mac Apple Silicon 0.3.1 DMG](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/releases/download/v0.3.1/Codex-Sidebar-Sort-Mac-Apple-Silicon.dmg)
+[Mac Intel 0.3.1 DMG](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/releases/download/v0.3.1/Codex-Sidebar-Sort-Mac-Intel.dmg)
 
-Read the release notes for your installer. [Windows 0.3.1](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/releases/tag/v0.3.1) · [macOS 0.3.0](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/releases/tag/v0.3.0)
+Read the release notes and compatibility table for your installer. [Version 0.3.1](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/releases/tag/v0.3.1)
 
 Use the compatibility information on the release page to check your desktop
 build before installing. The source repository is maintained privately. The
@@ -306,7 +307,7 @@ marker after exit and reopen. Signed-in sorting and settings retention use a
 separate test account. Automatic repair and recovery have isolated regression
 coverage. The published repair catalog is empty pending live acceptance.
 
-Current downloads supply Windows companion 0.3.1 and Mac companion 0.3.0.
+Current downloads supply companion 0.3.1 for all three targets.
 Existing 0.2.0 customers install their platform package once to receive
 its startup updater.
 The accepted-adapter catalog currently contains zero repair packs. Node.js

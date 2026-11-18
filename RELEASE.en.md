@@ -1,27 +1,27 @@
-# Codex Sidebar Sort 0.3.0
+# Codex Sidebar Sort 0.3.1
 
-Open the free EXE or processor-specific Mac DMG, choose an installation folder
-and install. The installer includes Node.js, startup following and the local
-Codex MCP connection. The receiving computer supplies its official ChatGPT
-Desktop client and sign-in. Reopen the app after installation.
+Version 0.3.1 is available for Windows x64, Apple Silicon Mac and Intel Mac.
+Each installer includes Node.js and the local Codex MCP companion.
+Choose the installer for your computer and follow the English setup guide.
 
-- Recognizes macOS ChatGPT 26.1111.71025 on Apple Silicon and Intel using two
-  observed variants of the existing sidebar interface family.
-- Saves sort mode and direction together. Unavailable metadata reports a
-  loading state and preserves the previous rule.
-- Preserves existing Codex MCP configuration and removes only the entry owned
-  by the installer. macOS rolls back if startup registration fails.
-- Retries a rebuilt companion after a previous activation failure for the same
-  client interface.
+- [Windows x64 EXE](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/releases/download/v0.3.1/Codex-Sidebar-Sort-Windows-x64-Setup.exe)
+- [Mac Apple Silicon DMG](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/releases/download/v0.3.1/Codex-Sidebar-Sort-Mac-Apple-Silicon.dmg)
+- [Mac Intel DMG](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/releases/download/v0.3.1/Codex-Sidebar-Sort-Mac-Intel.dmg)
 
-All 192 source and fixture tests, 34 native install, upgrade and uninstall
-checks, and six original-entry signed-out desktop starts passed. The Windows
-client was 26.1111.2228.0. Both official Mac clients were 26.1111.71025.
+The Windows package includes the Start menu restart fix and the updated
+read-only startup diagnostic. If startup fails, use the diagnostic report to
+identify the installed client and current compatibility state.
+[Windows diagnostic](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/releases/download/v0.3.1/Codex-Sidebar-Sort-Diagnostics.cmd)
 
-Signed-in sidebar ordering, grouping and saved rule
-retention and live repair delivery await release-specific testing. The online
-repair catalog currently contains no accepted repair packages. The community
-installers have no commercial signing or Apple Developer ID notarization.
+Both Mac disk images carry companion 0.3.1 and the 26.1111.71025
+interface inherited from 0.3.0. The two disk images have 0.3.1 build
+receipts. Mac install and startup acceptance was previously recorded
+for 0.3.0. Windows 0.3.1 passed its published companion-upgrade and
+signed-out startup checks. Compatibility with a different official
+desktop build depends on its actual interfaces.
 
-GitHub supplies the free desktop companion. Agensi supplies the paid Skill.
-[See the cloud run](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/actions/runs/44224786029).
+[English setup guide](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/blob/main/USER-GUIDE.en.md)
+· [Compatibility table](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/blob/main/COMPATIBILITY.en.md)
+· [Windows cloud run](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/actions/runs/44310857218)
+· [Apple Silicon build receipt](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/actions/runs/44331224122)
+· [Intel Mac build receipt](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/actions/runs/44329815966)

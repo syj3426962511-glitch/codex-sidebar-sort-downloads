@@ -2,14 +2,15 @@
 
 ## Current release
 
-The latest installers are Windows companion 0.3.1 and Mac companion 0.3.0.
+The latest installs use companion 0.3.1 on Windows x64 and both Mac architectures.
+The Mac 0.3.1 disk images were assembled without new native lifecycle tests.
 
 | Official client | Native installer lifecycle | Original app launch with the companion | Signed-in sorting with this release |
 | --- | --- | --- | --- |
 | Windows x64 26.1111.2228.0 | In-place update to 0.3.1 passed, with configuration retained | Two signed-out starts and Start menu restart passed | Pending |
 | Windows client displaying 26.1117.12345 | Setup present on a reported installation | Sorting startup warning, diagnosis pending | Pending |
-| Apple Silicon Mac 26.1111.71025 | Passed | Two signed-out starts passed | Pending |
-| Intel Mac 26.1111.71025 | Passed | Two signed-out starts passed | Pending |
+| Apple Silicon Mac 26.1111.71025 | Passed with companion 0.3.0 | Two signed-out starts passed with 0.3.0 | Pending for 0.3.1 |
+| Intel Mac 26.1111.71025 | Passed with companion 0.3.0 | Two signed-out starts passed with 0.3.0 | Pending for 0.3.1 |
 
 The Mac builds use separate official arm64 and x64 images. On both, the new
 interface variant matches 13 interface modules and 25 sidebar hook positions.
@@ -218,4 +219,4 @@ The component bootstrap can update its updater, platform launchers and startup m
 
 The structural discovery candidate has four legacy recipes based on 26.928.20755, 26.928.21956, 26.930.31730 and 26.1002.51308, each covering eleven hooks in eight function contexts. Unique function syntax trees, token boundaries and semantic renderer/import declarations determine selection. The schema-2 lexical signatures preserve shadowing and parameter-expression binding relationships. The native-v3 structural candidate adds thirteen required interfaces across three module factories, twenty-two integration points in eleven function contexts and three loader captures. Both paths await native acceptance. The 26.924 recipe needs its matching shared source.
 
-[Multi-version architecture](MULTIVERSION_COMPATIBILITY.en.md) · [Machine-readable history](compatibility/history.json) · [Current release receipt](receipts/release-0.3.0.json)
+[Multi-version architecture](MULTIVERSION_COMPATIBILITY.en.md) · [Machine-readable history](compatibility/history.json) · [Historical 0.3.0 receipt](receipts/release-0.3.0.json)

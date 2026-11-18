@@ -10,7 +10,7 @@ import subprocess
 from zipfile import ZipFile
 
 TARGETS = ("win-x64", "darwin-arm64", "darwin-x64")
-INSTALLER_VERSION = "0.3.0-setup.2"
+INSTALLER_VERSION = "0.3.1-setup.1"
 WINDOWS_INSTALLER_VERSION = "0.3.1-setup.1"
 
 
@@ -63,7 +63,7 @@ def build(target, archive, output, manifest):
             info = {
                 "CFBundleExecutable": "Installer", "CFBundleIdentifier": "io.github.codex-sidebar-sort." + role,
                 "CFBundleName": "Codex Sidebar Sort", "CFBundlePackageType": "APPL",
-                "CFBundleShortVersionString": "0.3.0", "CFBundleVersion": "0.3.0.5",
+                "CFBundleShortVersionString": runtime_version, "CFBundleVersion": runtime_version,
                 "LSMinimumSystemVersion": "12.0", "NSHighResolutionCapable": True,
                 "SorterRole": role,
             }
