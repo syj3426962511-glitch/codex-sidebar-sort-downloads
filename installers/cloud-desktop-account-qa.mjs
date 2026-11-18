@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import {execFileSync, spawn} from 'node:child_process';
+import {execFileSync, spawn, spawnSync} from 'node:child_process';
 import {createCipheriv, publicEncrypt, randomBytes} from 'node:crypto';
 import fs from 'node:fs';
 import {createRequire} from 'node:module';
@@ -73,8 +73,10 @@ async function signIn() {
     } finally {
       clearTimeout(timer);
     }
-    const status = execFileSync(process.env.QA_CLI, ['login', 'status'], {encoding: 'utf8', timeout: 15_000});
-    assert.match(status, /logged in (using|with) chatgpt/i, 'The CLI must report ChatGPT sign-in.');
+    const status = spawnSync(process.env.QA_CLI, ['login', 'status'], {encoding: 'utf8', timeout: 15_000});
+    assert.equal(status.status, 0, 'The CLI must exit successfully after device approval.');
+    assert.match([status.stdout, status.stderr].join('\n'), /logged in (using|with) chatgpt/i,
+      'The CLI must report ChatGPT sign-in.');
     await evidence('02-account-approved', {authenticated: true, at: new Date().toISOString()});
   } finally {
     if (!stopped) login.kill();
@@ -212,6 +214,7 @@ try {
   await screenshot('03-signed-in-first-start', {authenticated: true, rendererBuild: firstBuild});
   stage = 'project-fixture';
   await createProjects();
+  stage = 'project-menu';
   await verifyProjectMenu();
   stage = 'project-name-order';
   const before = await projectNames();
