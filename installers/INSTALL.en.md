@@ -19,6 +19,10 @@ Installed apps. Removing it restores its owned desktop shortcut and removes
 its startup service. Native projects, chat membership and Codex authentication
 stay in the client.
 
+Save your work before selecting **Open Codex with sorting** in the Start menu.
+That command can restart an existing Codex window. If sorting does not start,
+the launcher shows the folder containing its compatibility and startup reports.
+
 ## Mac Apple Silicon or Intel
 
 1. Open the DMG for your Mac processor.

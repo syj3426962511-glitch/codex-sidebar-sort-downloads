@@ -12,7 +12,7 @@ connection are included. No separate runtime or terminal setup is required.
 
 | Computer | Self-contained installer | Size |
 | --- | --- | --- |
-| Windows x64 | [EXE setup wizard](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/releases/download/v0.3.0/Codex-Sidebar-Sort-Windows-x64-Setup.exe) | 21.58 MiB |
+| Windows x64 | [EXE setup wizard](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/releases/download/v0.3.1/Codex-Sidebar-Sort-Windows-x64-Setup.exe) | 21.57 MiB |
 | Mac Apple Silicon | [DMG installer](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/releases/download/v0.3.0/Codex-Sidebar-Sort-Mac-Apple-Silicon.dmg) | 40.95 MiB |
 | Mac Intel | [DMG installer](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/releases/download/v0.3.0/Codex-Sidebar-Sort-Mac-Intel.dmg) | 42.41 MiB |
 
@@ -21,6 +21,8 @@ explicit restart action. Your computer supplies its own compatible Codex Desktop
 installation and sign-in. You can copy the EXE or DMG directly to another computer.
 
 [English setup guide](installers/INSTALL.en.md) | [Complete buyer guide](USER-GUIDE.en.md)
+
+**Windows update 0.3.1** fixes the Start menu launcher and reports startup failures. The published 0.3.0 installer was upgraded and the installed shortcut was exercised on an independent Windows runner. [Windows release notes](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/releases/tag/v0.3.1).
 
 ## Verified installer lifecycle
 

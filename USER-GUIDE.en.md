@@ -65,7 +65,7 @@ installers package the free 0.3.0 companion and its complete Node.js runtime.
 - `Codex-Sidebar-Sort-Mac-Apple-Silicon.dmg`
 - `Codex-Sidebar-Sort-Mac-Intel.dmg`
 
-[Windows x64 EXE](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/releases/download/v0.3.0/Codex-Sidebar-Sort-Windows-x64-Setup.exe)
+[Windows x64 EXE](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/releases/download/v0.3.1/Codex-Sidebar-Sort-Windows-x64-Setup.exe)
 [Mac Apple Silicon DMG](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/releases/download/v0.3.0/Codex-Sidebar-Sort-Mac-Apple-Silicon.dmg)
 [Mac Intel DMG](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/releases/download/v0.3.0/Codex-Sidebar-Sort-Mac-Intel.dmg)
 [Release notes and package checks](https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/releases/tag/v0.3.0)

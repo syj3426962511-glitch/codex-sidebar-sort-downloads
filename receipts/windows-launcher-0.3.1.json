@@ -1,0 +1,18 @@
+{
+  "version": "0.3.1",
+  "installer": "0.3.1-setup.1",
+  "upgradedFrom": "0.3.0",
+  "bytes": 22622767,
+  "sha256": "b9ac39606f876ddd4cbdb5b77ca5b119e7963162f53a837c74f70b38eac15ebb",
+  "officialClient": "26.1111.2228.0",
+  "normalStarts": 2,
+  "startMenuRestart": {
+    "restartFlagRequired": true,
+    "appPid": 1672,
+    "build": "d431e87667c65dc0a2506156c4e76da8edd9eaa69ce85f89b5e513b3fa6a2fd0",
+    "previousProcess": 1208,
+    "passed": true
+  },
+  "authenticated": false,
+  "cloudRun": "https://github.com/syj3426962511-glitch/codex-sidebar-sort-downloads/actions/runs/44310857218"
+}
